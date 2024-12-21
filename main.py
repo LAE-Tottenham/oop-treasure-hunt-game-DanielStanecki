@@ -10,16 +10,16 @@ class Game():
     def setup(self):
         # here you will setup your Game
         # places
-        home = Place('Home', 10)
-        bedroom = Place('Bedroom', 5)
-        bathroom = Place('Bathroom', 4, True) # bathroom is locked
-        garden = Place('Garden', 15)
-        shed = Place('Shed', 3)
-        cave = Place('Cave', 50)
+        forgottenLake = Place('Forgotten Lake')
+        weepingPeak = Place('Weeping Peak', True)
+        greenLake = Place('Green Lake', True) # bathroom is locked
+        garden = Place('Garden')
+        shed = Place('Shed')
+        cave = Place("Cave")
         
-        home.add_next_place(garden)
-        home.add_next_place(bedroom)
-        bedroom.add_next_place(bathroom)
+        forgottenLake.add_next_place(weepingPeak)
+        forgottenLake.add_next_place(greenLake)
+        weepingPeak.add_next_place()
         garden.add_next_place(shed)
         # etc. 
         
