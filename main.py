@@ -12,7 +12,7 @@ class Game():
         # places
         forgottenLake = Place('Forgotten Lake')
         weepingPeak = Place('Weeping Peak', True)
-        greenLake = Place('Green Lake', True) # bathroom is locked
+        greenLake = Place('Green Lake', True)
         garden = Place('Garden')
         shed = Place('Shed')
         cave = Place("Cave")
