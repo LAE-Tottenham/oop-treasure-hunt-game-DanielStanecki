@@ -20,4 +20,6 @@ class Place():
             # remember that next_places is a list of Place instances hence why we can use place.name
             print(place.name)
 
+    def unlockPlace(self): 
+        self.locked = True
     # add more methods as needed
