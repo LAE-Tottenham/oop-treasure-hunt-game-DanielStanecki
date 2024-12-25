@@ -56,6 +56,12 @@ class Game():
         sword = Weapon("Sword", 3)
         hammer = Weapon("Hammer", 4)
         spear = Weapon("Spear", 5)
+        bowAndArrow = Weapon("Bow and Arrow", 6)
+        greatsword = Weapon("Greatsword", 7)
+        axe = Weapon("Axe", 8)
+        mace = Weapon("Mace", 9)
+        magicStaff = Weapon("Magic Staff", 10)
+        
         
         self.current_place = forgottenLake
         
