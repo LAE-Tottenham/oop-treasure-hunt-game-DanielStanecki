@@ -25,7 +25,6 @@ class Game():
         theCrimsonAbyss = Place("The Crimson Abyss", True)
         
         forgottenLake.add_next_place(weepingPeak)
-        forgottenLake.add_next_place(greenLake)
         forgottenLake.add_next_place(crimsonsRest)
         weepingPeak.add_next_place(forgottenLake)
         weepingPeak.add_next_place(mountCrystal)
@@ -38,36 +37,45 @@ class Game():
         giantsCrossroads.add_next_place(forgottenPeninsula)
         crimsonsRest.add_next_place(giantsCrossroads)
         crimsonsRest.add_next_place(forgottenLake)
+        forgottenPeninsula.add_next_place(giantsCrossroads)
+        forgottenPeninsula.add_next_place(forbiddenNest)
+        theGodstree.add_next_place(mountCrystal)
+        theGodstree.add_next_place(fogCapital)
+        fogCapital.add_next_place(theGodstree)
+        fogCapital.add_next_place(greenLake)
+        greenLake.add_next_place(fogCapital)
+        greenLake.add_next_place(giantsRestingGrounds)
+        giantsRestingGrounds.add_next_place(greenLake)
+        giantsRestingGrounds.add_next_place(capitalOutskirts)
+        capitalOutskirts.add_next_place(giantsRestingGrounds)
+        capitalOutskirts.add_next_place(theCrimsonAbyss)
+        theCrimsonAbyss.add_next_place(capitalOutskirts)
 
-        # etc. 
         
         # items
-        hammer = Item('Hammer')
-        pen = Item('Pen')
-
-        home.add_item(hammer)
-        bedroom.add_item(pen)
-
-        # home will be our starting place
+        sword = Weapon("Sword", 3)
+        hammer = Weapon("Hammer", 4)
+        spear = Weapon("Spear", 5)
+        
         self.current_place = forgottenLake
         
         # finish the setup function...
 
     def start(self):
-        print("Welcome to my game...")
-        print("Storyline...")
+        print("Welcome to my game!")
+        print("You are a lone traveler that has found themselves in a foreign land, looking for the treasure that belongs to the Demon King Crimson. ")
         name = input("Enter player name: ")
         player = Player(name)
 
         print("You are currently in " + self.current_place.name)
         self.current_place.show_next_places()
         opt = input("""
-What would you like to do?
-1. Go to a place
-2. Pickup item
-3. Check inventory
-etc.      
-""")
+        What would you like to do?
+        1. Go to a place
+        2. Pickup item
+        3. Check inventory
+        etc.      
+        """)
         if opt == "1":
             # add code
             pass
@@ -77,4 +85,7 @@ etc.
         elif opt == "3":
             # add code
             pass
-            
+
+game = Game()
+game.setup()
+game.start()
