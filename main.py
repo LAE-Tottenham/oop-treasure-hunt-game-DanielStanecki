@@ -61,7 +61,11 @@ class Game():
         axe = Weapon("Axe", 8)
         mace = Weapon("Mace", 9)
         magicStaff = Weapon("Magic Staff", 10)
-        
+        dagger = Weapon("Dagger", 11)
+        goldSword = Weapon("Gold Sword", 12)
+        trident = Weapon("Trident", 13)
+        katana = Weapon("Katana", 14)
+        theVoidSword = Weapon("The Void Sword", 15)
         
         self.current_place = forgottenLake
         
@@ -69,24 +73,25 @@ class Game():
 
     def start(self):
         print("Welcome to my game!")
-        print("You are a lone traveler that has found themselves in a foreign land, looking for the treasure that belongs to the Demon King Crimson. ")
+        print("""You are a lone traveler that has found themselves in a foreign land, looking for the treasure that belongs to the Demon King Crimson. The only way to leave this fantastical world is to defeat the Demon King, and enter the void.
+After entering the void, you should return back to your homeworld. However, beware. The path ahead is treacherous, and not for the faint of heart. Make sure you take your time and are strong enough during the course of the adventure""")
         name = input("Enter player name: ")
         player = Player(name)
 
         print("You are currently in " + self.current_place.name)
         self.current_place.show_next_places()
+        print("You see something glistening on the ground in the distance")
         opt = input("""
         What would you like to do?
         1. Go to a place
         2. Pickup item
-        3. Check inventory
-        etc.      
+        3. Check inventory      
         """)
         if opt == "1":
-            # add code
+            print("You currently lack the items to go to any locations")
             pass
         elif opt == "2":
-            # add code
+            
             pass
         elif opt == "3":
             # add code
