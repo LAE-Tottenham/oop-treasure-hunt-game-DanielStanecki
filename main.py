@@ -2,6 +2,40 @@ from place import Place
 from player import Player
 from item import Item, Weapon
 
+forgottenLake = Place("Forgotten Lake")
+weepingPeak = Place("Weeping Peak", True)
+mountCrystal = Place("Mount Crystal", True)
+giantsCrossroads = Place("Giant's Crossroads", True)
+crimsonsRest = Place("Crimson's Rest", True)
+forgottenPeninsula = Place("Forgotten Peninsula", True)
+forbiddenNest = Place("Forbidden Nest", True)
+theGodstree = Place("The Godstree", True)
+fogCapital = Place("Fog Capital", True)
+greenLake = Place("Green Lake", True)
+giantsRestingGrounds = Place("Giant's Resting Grounds", True)
+capitalOutskirts = Place("Capital Outskirts", True)
+theCrimsonAbyss = Place("The Crimson Abyss", True)
+
+#potions
+hpPotion = Item("HP Potion")
+staminaPotion = Item("Stamina Potion")
+
+
+# weapons
+sword = Weapon("Sword", 3)
+hammer = Weapon("Hammer", 4)
+spear = Weapon("Spear", 5)
+bowAndArrow = Weapon("Bow and Arrow", 6)
+greatsword = Weapon("Greatsword", 7)
+axe = Weapon("Axe", 8)
+mace = Weapon("Mace", 9)
+magicStaff = Weapon("Magic Staff", 10)
+dagger = Weapon("Dagger", 11)
+goldSword = Weapon("Gold Sword", 12)
+trident = Weapon("Trident", 13)
+katana = Weapon("Katana", 14)
+theVoidSword = Weapon("The Void Sword", 15)
+
 class Game():
     def __init__(self):
         self.current_place = None
@@ -51,8 +85,12 @@ class Game():
         capitalOutskirts.add_next_place(theCrimsonAbyss)
         theCrimsonAbyss.add_next_place(capitalOutskirts)
 
-        
-        # items
+        #potions
+        hpPotion = Item("HP Potion")
+        staminaPotion = Item("Stamina Potion")
+
+
+        # weapons
         sword = Weapon("Sword", 3)
         hammer = Weapon("Hammer", 4)
         spear = Weapon("Spear", 5)
@@ -91,11 +129,31 @@ After entering the void, you should return back to your homeworld. However, bewa
             print("You currently lack the items to go to any locations")
             pass
         elif opt == "2":
-            
+            print("""As you approach the glistening item, you start to see its shape; a long, pointed objected.
+You pick it up in your hand, and you realise that it is a sword""")
             pass
         elif opt == "3":
-            # add code
+            print(player.inventory)
             pass
+        
+        while opt != "2": 
+            opt = input("""
+What would you like to do?
+1. Go to a place
+2. Pickup item
+3. Check inventory      
+""")
+            if opt == "1":
+                print("You currently lack the items to go to any locations")
+                pass
+            elif opt == "2":
+                print("""As you approach the glistening item, you start to see its shape; a long, pointed objected.
+You pick it up in your hand, and you realise that it is a sword""")
+                sword.setPlayerDMG(player)
+                pass
+            elif opt == "3":
+                print(player.inventory)
+                pass
 
 game = Game()
 game.setup()

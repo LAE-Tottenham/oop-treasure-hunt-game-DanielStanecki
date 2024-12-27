@@ -6,7 +6,7 @@ class Player():
         self.health = 100
         self.energy = 50
         self.inventoryMax = 12
-        self.inventory = ["banana", "apple"]
+        self.inventory = []
         self.damage = 2
         
     def calculateInventory_size(self):
