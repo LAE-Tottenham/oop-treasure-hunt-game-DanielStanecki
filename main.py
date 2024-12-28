@@ -2,6 +2,7 @@ from place import Place
 from player import Player
 from item import Item, Weapon
 from enemies import Enemy
+import combat
 
 forgottenLake = Place("Forgotten Lake")
 weepingPeak = Place("Weeping Peak", True)
@@ -166,8 +167,7 @@ Your damage has increased, as you now have a weapon!""")
 The ragged skeleton reaches for its belt, and takes out a sword! 
 You take out your own sword, and the fight begins!""")
             skeleton = Enemy("Skeleton ", 1, 25)
-            while player.hp != 0 or skeleton.hp != 0: 
-
+            combat.combat(player, skeleton)
 game = Game()
 game.setup()
 game.start()

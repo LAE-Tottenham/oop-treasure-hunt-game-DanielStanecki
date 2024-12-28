@@ -9,8 +9,11 @@ class Enemy():
     def attack(self, player): 
         dmgRoll = random.randrange(1, 21)
         if dmgRoll > 10: 
-            player.hp -= (dmgRoll - 10) * self.dmg
+            player.health -= (dmgRoll - 10) * self.dmg
         elif dmgRoll < 10: 
-            player.hp -= self.dmg // (10 - dmgRoll)
+            player.health -= self.dmg // (10 - dmgRoll)
         elif dmgRoll == 10:
-            player.hp -= self.dmg
+            player.health -= self.dmg
+
+    def viewStats(self): 
+        print(f"{self.name} Health: {self.hp}")
