@@ -9,7 +9,7 @@ class Weapon(Item):
         self.weaponDMG = dmg
 
     def setPlayerDMG(self, player): 
-        player.DMG += self.weaponDMG
+        player.damage += self.weaponDMG
 
 
 #test:

@@ -1,3 +1,5 @@
+import random
+
 class Player():
     def __init__(self, given_name):
         self.name = given_name
@@ -37,4 +39,12 @@ class Player():
                 self.health = self.maxHealth
             else: 
                 self.health += 50
-
+    
+    def attack(self, enemy): 
+        dmgRoll = random.randrange(1, 21)
+        if dmgRoll > 10: 
+            enemy.hp -= (dmgRoll - 10) * self.dmg
+        elif dmgRoll < 10: 
+            enemy.hp -= self.dmg // (10 - dmgRoll)
+        elif dmgRoll == 10:
+            enemy.hp -= self.dmg

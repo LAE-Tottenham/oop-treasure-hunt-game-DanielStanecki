@@ -1,6 +1,7 @@
 from place import Place
 from player import Player
 from item import Item, Weapon
+from enemies import Enemy
 
 forgottenLake = Place("Forgotten Lake")
 weepingPeak = Place("Weeping Peak", True)
@@ -148,12 +149,24 @@ What would you like to do?
                 pass
             elif opt == "2":
                 print("""As you approach the glistening item, you start to see its shape; a long, pointed objected.
-You pick it up in your hand, and you realise that it is a sword""")
+You pick it up in your hand, and you realise that it is a sword
+Your damage has increased, as you now have a weapon!""")
                 sword.setPlayerDMG(player)
                 pass
             elif opt == "3":
                 print(player.inventory)
                 pass
+        
+        opt = input("""In the distance, you see an cloaked figure. Would you like to approach it?
+1: Yes
+2: No
+""")
+        if opt == "1": 
+            print("""As you approach, the figure turns around, and, to your terror, you see a skeleton.
+The ragged skeleton reaches for its belt, and takes out a sword! 
+You take out your own sword, and the fight begins!""")
+            skeleton = Enemy("Skeleton ", 1, 25)
+            while player.hp != 0 or skeleton.hp != 0: 
 
 game = Game()
 game.setup()
