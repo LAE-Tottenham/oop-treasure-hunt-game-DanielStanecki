@@ -38,6 +38,9 @@ trident = Weapon("Trident", 13)
 katana = Weapon("Katana", 14)
 theVoidSword = Weapon("The Void Sword", 15)
 
+#enemies
+skeleton = Enemy("Skeleton ", 1, 0)
+
 class Game():
     def __init__(self):
         self.current_place = None
@@ -171,11 +174,12 @@ As you approach, the figure turns around, and, to your terror, you see a skeleto
 The ragged skeleton reaches for its belt, and takes out a sword! 
 You take out your own sword, and the fight begins!
 """)
-            skeleton = Enemy("Skeleton ", 1, 25)
+            
             combat.combat(player, skeleton)
             print("""
 That is how combat works; make sure that you are strong enough to fight an enemy. 
 """)
+        
         print("As you walk on the shores of the lake, you see a man sitting on a bench.")
         opt = input("""
         What would you like to do? 
@@ -190,17 +194,63 @@ You walk to the man, and he looks up at you.
 - Hello there! Would you be interested in buy some Health Potions?
 """)
             opt = input(f"""
-            Would you like to buy a health potion for 15 gold. You currently have {player.money} gold.
-            1: Yes
-            2: No
-            """)        
+        Would you like to buy a health potion for 15 gold. You currently have {player.money} gold.
+        1: Yes
+        2: No
+        """)        
             if opt == "1": 
                 print("- Pleasure doing business!")
-                player.addItem(hpPotion)
+                player.addItem(hpPotion.name)
                 player.money -= 15
             
             else: 
                 print("- How unfortunate. Have a pleasant day.")
+
+        elif opt == "2": 
+            print(player.inventory)
+        
+        elif opt == "3": 
+            player.viewStats()
+        
+        while opt != "1": 
+            if opt == "1": 
+                print("""
+You walk to the man, and he looks up at you.
+- Hello there! Would you be interested in buy some Health Potions?
+""")
+                opt = input(f"""
+        Would you like to buy a health potion for 15 gold. You currently have {player.money} gold.
+        1: Yes
+        2: No
+        """)        
+            if opt == "1": 
+                print("- Pleasure doing business!")
+                player.addItem(hpPotion.name)
+                player.money -= 15
+            
+            else: 
+                print("- How unfortunate. Have a pleasant day.")
+
+        elif opt == "2": 
+            print(player.inventory)
+        
+        elif opt == "3": 
+            player.viewStats()
+        
+            
+
+        print(f"Your health is currently {player.health}.")
+        if player.health < player.maxHealth: 
+            opt = input("""
+        Would you like to heal? 
+        1: Yes
+        2: No
+        """)
+        
+            if opt == "1": 
+                player.useItem(hpPotion)
+                player.viewStats()
+                print(player.inventory)
             
 game = Game()
 game.setup()

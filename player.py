@@ -5,7 +5,7 @@ class Player():
         self.name = given_name
         self.maxHealth = 100
         self.maxEnergy = 100
-        self.health = 100
+        self.health = 20
         self.energy = 50
         self.inventoryMax = 12
         self.inventory = []
@@ -21,7 +21,7 @@ class Player():
         else:
             print("Your inventory is full...")
 
-    def removeItem(self): 
+    def playerRemoveItem(self): 
         print(self.inventory)
         item = input("Please choose an item to remove: ")
         self.inventory.remove(item)
@@ -30,16 +30,20 @@ class Player():
         print(f"Player Health: {self.health}           Energy: {self.energy}")
         
     def useItem(self, item):
-        if item.name == "Stamina Potion":
-            if self.energy >= self.maxEnergy - 50:
-                self.energy = self.maxEnergy
-            else:  
-                self.energy += 50
-        elif item.name == "HP Potion":
-            if self.health >= self.maxHealth - 50: 
-                self.health = self.maxHealth
-            else: 
-                self.health += 50
+        if item.name in self.inventory: 
+            if item.name == "Stamina Potion":
+                if self.energy >= self.maxEnergy - 50:
+                    self.energy = self.maxEnergy
+                else:  
+                    self.energy += 50
+            elif item.name == "HP Potion":
+                if self.health >= self.maxHealth - 50: 
+                    self.health = self.maxHealth
+                else: 
+                    self.health += 50
+            self.inventory.remove(item.name)
+        else: 
+            print("You do not currently have this item in your inventory.")
     
     def attack(self, enemy): 
         dmgRoll = random.randrange(1, 21)
