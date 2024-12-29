@@ -5,11 +5,12 @@ class Player():
         self.name = given_name
         self.maxHealth = 100
         self.maxEnergy = 100
-        self.health = 5
+        self.health = 100
         self.energy = 50
         self.inventoryMax = 12
         self.inventory = []
         self.damage = 2
+        self.money = 100
         
     def calculateInventory_size(self):
              return len(self.inventory) + 1

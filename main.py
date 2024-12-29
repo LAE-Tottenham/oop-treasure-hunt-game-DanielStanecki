@@ -123,9 +123,9 @@ After entering the void, you should return back to your homeworld. However, bewa
         print("You see something glistening on the ground in the distance")
         opt = input("""
         What would you like to do?
-        1. Go to a place
-        2. Pickup item
-        3. Check inventory      
+        1: Go to a place
+        2: Pickup item
+        3: Check inventory      
         """)
         if opt == "1":
             print("You currently lack the items to go to any locations")
@@ -140,34 +140,68 @@ You pick it up in your hand, and you realise that it is a sword""")
         
         while opt != "2": 
             opt = input("""
-What would you like to do?
-1. Go to a place
-2. Pickup item
-3. Check inventory      
-""")
+            What would you like to do?
+            1: Go to a place
+            2: Pickup item
+            3: Check inventory      
+            """)
             if opt == "1":
                 print("You currently lack the items to go to any locations")
                 pass
             elif opt == "2":
-                print("""As you approach the glistening item, you start to see its shape; a long, pointed objected.
+                print("""
+As you approach the glistening item, you start to see its shape; a long, pointed objected.
 You pick it up in your hand, and you realise that it is a sword
-Your damage has increased, as you now have a weapon!""")
+Your damage has increased, as you now have a weapon!
+""")
                 sword.setPlayerDMG(player)
                 pass
             elif opt == "3":
                 print(player.inventory)
                 pass
         
-        opt = input("""In the distance, you see an cloaked figure. Would you like to approach it?
-1: Yes
-2: No
-""")
+        opt = input("""
+        In the distance, you see an cloaked figure. Would you like to approach it?
+        1: Yes
+        2: No
+        """)
         if opt == "1": 
-            print("""As you approach, the figure turns around, and, to your terror, you see a skeleton.
+            print("""
+As you approach, the figure turns around, and, to your terror, you see a skeleton.
 The ragged skeleton reaches for its belt, and takes out a sword! 
-You take out your own sword, and the fight begins!""")
+You take out your own sword, and the fight begins!
+""")
             skeleton = Enemy("Skeleton ", 1, 25)
             combat.combat(player, skeleton)
+            print("""
+That is how combat works; make sure that you are strong enough to fight an enemy. 
+""")
+        print("As you walk on the shores of the lake, you see a man sitting on a bench.")
+        opt = input("""
+        What would you like to do? 
+        1: Speak to the man
+        2: Check Inventory
+        3: View Stats
+        """)
+
+        if opt == "1": 
+            print("""
+You walk to the man, and he looks up at you.
+- Hello there! Would you be interested in buy some Health Potions?
+""")
+            opt = input(f"""
+            Would you like to buy a health potion for 15 gold. You currently have {player.money} gold.
+            1: Yes
+            2: No
+            """)        
+            if opt == "1": 
+                print("- Pleasure doing business!")
+                player.addItem(hpPotion)
+                player.money -= 15
+            
+            else: 
+                print("- How unfortunate. Have a pleasant day.")
+            
 game = Game()
 game.setup()
 game.start()
