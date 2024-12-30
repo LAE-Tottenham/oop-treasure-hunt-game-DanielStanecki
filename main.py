@@ -19,7 +19,7 @@ def combat(player, enemy):
             player.useItem(hpPotion)
         if enemy.hp <= 0: 
             print("Congratulations, you have won!")
-            print(f"{enemy.name}Health: 0")
+            print(f"{enemy.name} Health: 0")
             break
         else: 
             pass
@@ -50,7 +50,7 @@ def bossCombat(player, boss):
             player.useItem(hpPotion)
         if boss.hp <= 0: 
             print("Congratulations, you have won!")
-            print(f"{boss.name}Health: 0")
+            print(f"{boss.name} Health: 0")
             break
         else: 
             pass
@@ -106,7 +106,7 @@ katana = Weapon("Katana", 14)
 theVoidSword = Weapon("The Void Sword", 15)
 
 #enemies
-skeleton = Enemy("Skeleton ", 1, 25)
+skeleton = Enemy("Skeleton", 1, 25)
 
 #boss
 fishMonster = Boss("Fish Monster", 5, 40, 10)
@@ -134,29 +134,16 @@ class Game():
         theCrimsonAbyss = Place("The Crimson Abyss", True)
         
         forgottenLake.add_next_place(weepingPeak)
-        forgottenLake.add_next_place(crimsonsRest)
-        weepingPeak.add_next_place(forgottenLake)
-        weepingPeak.add_next_place(mountCrystal)
         weepingPeak.add_next_place(giantsCrossroads)
-        mountCrystal.add_next_place(weepingPeak)
-        mountCrystal.add_next_place(forbiddenNest)
         mountCrystal.add_next_place(theGodstree)
-        giantsCrossroads.add_next_place(weepingPeak)
         giantsCrossroads.add_next_place(crimsonsRest)
-        giantsCrossroads.add_next_place(forgottenPeninsula)
-        crimsonsRest.add_next_place(giantsCrossroads)
-        crimsonsRest.add_next_place(forgottenLake)
-        forgottenPeninsula.add_next_place(giantsCrossroads)
+        crimsonsRest.add_next_place(forgottenPeninsula)
         forgottenPeninsula.add_next_place(forbiddenNest)
-        theGodstree.add_next_place(mountCrystal)
+        forbiddenNest.add_next_place(mountCrystal)
         theGodstree.add_next_place(fogCapital)
-        fogCapital.add_next_place(theGodstree)
         fogCapital.add_next_place(greenLake)
-        greenLake.add_next_place(fogCapital)
         greenLake.add_next_place(giantsRestingGrounds)
-        giantsRestingGrounds.add_next_place(greenLake)
         giantsRestingGrounds.add_next_place(capitalOutskirts)
-        capitalOutskirts.add_next_place(giantsRestingGrounds)
         capitalOutskirts.add_next_place(theCrimsonAbyss)
         theCrimsonAbyss.add_next_place(capitalOutskirts)
 
@@ -223,11 +210,10 @@ You pick it up in your hand, and you realise that it is a sword""")
                 pass
             elif opt == "2":
                 print("""
-As you approach the glistening item, you start to see its shape; a long, pointed objected.
-You pick it up in your hand, and you realise that it is a sword
-Your damage has increased, as you now have a weapon!
+As you approach the glistening item, you start to see its shape; a bottle of some sorts.
+You pick it up in your hand, and you realise that it is a health potion!
 """)
-                sword.setPlayerDMG(player)
+                player.addItem(hpPotion)
                 pass
             elif opt == "3":
                 print(player.inventory)
@@ -330,6 +316,8 @@ You walk to the man, and he looks up at you.
         
         print("When you look into the water, you see a huge shadow swimming within")
         print("You look at it, intrigued by it, when it suddenly jumps out at you and attacks!")
+        bossCombat(player, fishMonster)
+        print("Congratulations, you have defeated the first boss in the game!")
 
             
 game = Game()

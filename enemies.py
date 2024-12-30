@@ -18,7 +18,7 @@ class Enemy():
     def viewStats(self): 
         print(f"{self.name} Health: {self.hp}")
 
-class Boss(): 
+class Boss(Enemy): 
     def __init__(self, name, dmg, hp, special): 
         super().__init__(name, dmg, hp)
         self.special = special
