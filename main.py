@@ -1,8 +1,75 @@
 from place import Place
 from player import Player
 from item import Item, Weapon
-from enemies import Enemy
-import combat
+from enemies import Enemy, Boss
+import time
+import random
+
+def combat(player, enemy): 
+    while player.health != 0 or enemy.hp != 0: 
+        print("Player Turn")
+        opt = input("""What would you like to do?
+        1: Attack
+        2: Heal
+                    """)
+        if opt == "1": 
+            time.sleep(1.25)
+            player.attack(enemy)
+        elif opt == "2": 
+            player.useItem(hpPotion)
+        if enemy.hp <= 0: 
+            print("Congratulations, you have won!")
+            print(f"{enemy.name}Health: 0")
+            break
+        else: 
+            pass
+        enemy.viewStats()
+        time.sleep(1.25)
+        print("Enemy Turn")
+        time.sleep(1.25)
+        enemy.attack(player)
+        if player.health <= 0: 
+            print("Player Health: 0")
+            print("Game Over!")
+            exit()
+        else: 
+            player.viewStats()
+        time.sleep(1.25)
+
+def bossCombat(player, boss): 
+    while player.health != 0 or boss.hp != 0: 
+        print("Player Turn")
+        opt = input("""What would you like to do?
+        1: Attack
+        2: Heal
+                    """)
+        if opt == "1": 
+            time.sleep(1.25)
+            player.attack(boss)
+        elif opt == "2": 
+            player.useItem(hpPotion)
+        if boss.hp <= 0: 
+            print("Congratulations, you have won!")
+            print(f"{boss.name}Health: 0")
+            break
+        else: 
+            pass
+        boss.viewStats()
+        time.sleep(1.25)
+        print("Boss Turn")
+        time.sleep(1.25)
+        special = random.randint(1, 10)
+        if special == 1:
+            player.health -= boss.special
+        else: 
+            boss.attack(player)
+        if player.health <= 0: 
+            print("Player Health: 0")
+            print("Game Over!")
+            exit()
+        else: 
+            player.viewStats()
+        time.sleep(1.25)
 
 forgottenLake = Place("Forgotten Lake")
 weepingPeak = Place("Weeping Peak", True)
@@ -39,7 +106,10 @@ katana = Weapon("Katana", 14)
 theVoidSword = Weapon("The Void Sword", 15)
 
 #enemies
-skeleton = Enemy("Skeleton ", 1, 0)
+skeleton = Enemy("Skeleton ", 1, 25)
+
+#boss
+fishMonster = Boss("Fish Monster", 5, 40, 10)
 
 class Game():
     def __init__(self):
@@ -175,7 +245,7 @@ The ragged skeleton reaches for its belt, and takes out a sword!
 You take out your own sword, and the fight begins!
 """)
             
-            combat.combat(player, skeleton)
+            combat(player, skeleton)
             print("""
 That is how combat works; make sure that you are strong enough to fight an enemy. 
 """)
@@ -213,6 +283,12 @@ You walk to the man, and he looks up at you.
             player.viewStats()
         
         while opt != "1": 
+            opt = input("""
+        What would you like to do? 
+        1: Speak to the man
+        2: Check Inventory
+        3: View Stats
+        """)
             if opt == "1": 
                 print("""
 You walk to the man, and he looks up at you.
@@ -223,19 +299,19 @@ You walk to the man, and he looks up at you.
         1: Yes
         2: No
         """)        
-            if opt == "1": 
-                print("- Pleasure doing business!")
-                player.addItem(hpPotion.name)
-                player.money -= 15
+                if opt == "1": 
+                    print("- Pleasure doing business!")
+                    player.addItem(hpPotion.name)
+                    player.money -= 15
             
-            else: 
-                print("- How unfortunate. Have a pleasant day.")
+                else: 
+                    print("- How unfortunate. Have a pleasant day.")
 
-        elif opt == "2": 
-            print(player.inventory)
+            elif opt == "2": 
+                print(player.inventory)
         
-        elif opt == "3": 
-            player.viewStats()
+            elif opt == "3": 
+                player.viewStats()
         
             
 
@@ -251,6 +327,10 @@ You walk to the man, and he looks up at you.
                 player.useItem(hpPotion)
                 player.viewStats()
                 print(player.inventory)
+        
+        print("When you look into the water, you see a huge shadow swimming within")
+        print("You look at it, intrigued by it, when it suddenly jumps out at you and attacks!")
+
             
 game = Game()
 game.setup()
