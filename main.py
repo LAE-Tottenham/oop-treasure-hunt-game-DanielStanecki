@@ -58,7 +58,7 @@ def bossCombat(player, boss):
         time.sleep(1.25)
         print("Boss Turn")
         time.sleep(1.25)
-        special = random.randint(1, 10)
+        special = random.randint(1, 11)
         if special == 1:
             player.health -= boss.special
         else: 
@@ -92,21 +92,36 @@ staminaPotion = Item("Stamina Potion")
 
 # weapons
 sword = Weapon("Sword", 3)
+goldSword = Weapon("Gold Sword", 6)
 hammer = Weapon("Hammer", 4)
+goldHammer = Weapon("Gold Hammer", 8)
 spear = Weapon("Spear", 5)
+goldSpear = Weapon("Gold Spear", 10)
 bowAndArrow = Weapon("Bow and Arrow", 6)
+goldBowAndArrow = Weapon("Gold Bow and Arrow", 12)
 greatsword = Weapon("Greatsword", 7)
+goldGreatsword = Weapon("Gold Greatsword", 14)
 axe = Weapon("Axe", 8)
+goldAxe = Weapon("Gold Axe", 16)
 mace = Weapon("Mace", 9)
+goldMace = Weapon("Gold Mace", 18)
 magicStaff = Weapon("Magic Staff", 10)
+goldMagicStaff = Weapon("Gold Magic Staff", 20)
 dagger = Weapon("Dagger", 11)
-goldSword = Weapon("Gold Sword", 12)
+goldDagger = Weapon("Gold Dagger", 22)
+nunchucks = Weapon("Nunchucks", 12)
+goldNunchucks = Weapon("Gold Nunchucks", 24)
 trident = Weapon("Trident", 13)
+goldTrident = Weapon("Gold Trident", 26)
 katana = Weapon("Katana", 14)
+goldKatana = Weapon("Gold Katana", 28)
 theVoidSword = Weapon("The Void Sword", 15)
+theGoldVoidSword = Weapon("The Gold Void Sword", 30)
 
 #enemies
 skeleton = Enemy("Skeleton", 1, 25)
+manGoat = Enemy("Man-Goat", 3, 30)
+crystalZombie = Enemy("Crystal Zombie", 5, 35)
 
 #boss
 fishMonster = Boss("Fish Monster", 5, 40, 10)
@@ -232,6 +247,12 @@ You take out your own sword, and the fight begins!
 """)
             
             combat(player, skeleton)
+            dropChance = random.randint(1, 101)
+            if dropChance >= 50: 
+                print("The skeleton dropped a sword!")
+                sword.setPlayerDMG(player)
+            elif dropChance == 1: 
+                print("You got a very rare weapon from the skeleton!")
             print("""
 That is how combat works; make sure that you are strong enough to fight an enemy. 
 """)
