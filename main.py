@@ -5,6 +5,20 @@ from enemies import Enemy, Boss
 import time
 import random
 
+def buy(player):
+    buy = input("""
+    Would you like to buy a health potion? 
+    1: Yes
+    2: No                          
+""")            
+    if buy == "1": 
+        player.addItem(hpPotion)
+        player.money -= 10
+        print("Thank you for your purchase.")
+    else:
+        print("How unfortunate, have a nice day.") 
+        
+
 def combat(player, enemy): 
     while player.health != 0 or enemy.hp != 0: 
         print("Player Turn")
@@ -385,6 +399,25 @@ You walk to the man, and he looks up at you.
             player.money -= 10
         elif opt == "2": 
             print("- So you are a stubborn one. Do not worry, I was just testing your will and spirit.")
+
+        print("As you look around, you see a great waterfall splashing into a lake.")
+        print("- Welcome to the Weeping Peak")
+
+        opt = " "
+        while opt != "2":
+            opt = input("""
+    What would you like to do?
+    1: Buy something from the merchant
+    2: Drink water from the waterfall
+    3: View Inventory
+    4: View Stats
+    5: Heal           
+""")
+            if opt == "1": 
+                buy(player)
+
 game = Game()
 game.setup()
 game.start()
+
+#test
