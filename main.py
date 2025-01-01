@@ -344,16 +344,47 @@ You walk to the man, and he looks up at you.
         print("You look at it, intrigued by it, when it suddenly jumps out at you and attacks!")
         bossCombat(player, fishMonster)
         print("Congratulations, you have defeated the first boss in the game!")
+        print("You find some sort of sticky gloves on the ground...")
         print("It seems that you have gotten stronger by defeating this boss...")
         buff.buffPlayer(player)
 
-        opt = input("""
-    What would you like to do now? 
-    1: Go to the next area
-    2
-                    """)
 
-            
+        opt = " "
+        while opt != "1": 
+            opt = input("""
+    What would you like to do now? 
+    1: Try climbing the mountain using the sticky gloves. 
+    2: Try swim in the lake
+    3: View Inventory
+    4: View Stats
+    5: Heal
+                    """) 
+            if opt == "2": 
+                print("As soon as you touch the water, you feel the poison seeping into you")
+                print("You lose 10 health!")
+                player.health -= 10
+            elif opt == "3": 
+                print(player.inventory)
+            elif opt == "4": 
+                player.viewStats()
+            elif opt == "5": 
+                player.useItem(hpPotion)
+   
+        print("The gloves stick to the cliff perfectly, allowing you to easily climb it.")
+        print("As you reach the top, a figure looms over you.")
+        print("He speaks to you: ")
+        print("- So you made it up here. Let's see if you are worthy of this adventure.")
+        print("- In order for you to continue, you will have to pay me.")
+        opt = input("""
+    Will you pay the mysterious man? 
+    1: Yes
+    2: No           
+""")
+        if opt == "1": 
+            print("- Hmph, you are a gullible one. But I'll take the money")
+            player.money -= 10
+        elif opt == "2": 
+            print("- So you are a stubborn one. Do not worry, I was just testing your will and spirit.")
 game = Game()
 game.setup()
 game.start()
