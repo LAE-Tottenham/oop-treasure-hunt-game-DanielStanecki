@@ -21,7 +21,7 @@ class Buff(Item):
         player.energy += 10
 
 #test:
-class Player():
+"""class Player():
     def __init__(self, given_name):
         self.name = given_name
         self.maxHealth = 100
@@ -92,4 +92,4 @@ print(daniel.damage)
 print(daniel.baseDamage)
 damageBuff.buffPlayer(daniel)
 print(daniel.damage)
-print(daniel.baseDamage)
+print(daniel.baseDamage)"""

@@ -313,7 +313,7 @@ You walk to the man, and he looks up at you.
         """)        
                 if opt == "1": 
                     print("- Pleasure doing business!")
-                    player.addItem(hpPotion.name)
+                    player.addItem(hpPotion)
                     player.money -= 15
             
                 else: 
