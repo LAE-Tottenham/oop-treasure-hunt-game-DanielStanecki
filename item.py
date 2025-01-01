@@ -10,31 +10,28 @@ class Weapon(Item):
         super().__init__(name)
         self.weaponDMG = dmg
 
-    def setPlayerDMG(self, player): 
-        player.damage = player.baseDamage + self.weaponDMG
-
 class Buff(Item): 
-    def __init__(self, name, buff, type): 
+    def __init__(self, name): 
         super().__init__(name)
-        self.buff = buff
-        self.type = type
 
-    def buffPlayer(self, player): 
-        if self.type == "Damage": 
-            
+    def buffPlayer(self, player):  
+        player.baseDamage += 1
+        player.damage = player.baseDamage + player.weaponDamage
+        player.maxHealth += 25
+        player.energy += 10
 
 #test:
 class Player():
     def __init__(self, given_name):
         self.name = given_name
         self.maxHealth = 100
-        self.maxEnergy = 100
         self.health = 100
         self.energy = 50
         self.inventoryMax = 12
         self.inventory = []
         self.baseDamage = 2
-        self.damage = self.baseDamage
+        self.weaponDamage = 0
+        self.damage = self.baseDamage + self.weaponDamage
         self.money = 100
         
     def calculateInventory_size(self):
@@ -53,7 +50,11 @@ class Player():
 
     def viewStats(self): 
         print(f"Player Health: {self.health}           Energy: {self.energy}")
-        
+
+    def setPlayerDMG(self, weapon): 
+        self.weaponDamage = weapon.weaponDMG
+        self.damage = self.baseDamage + self.weaponDamage    
+
     def useItem(self, item):
         if item.name in self.inventory: 
             if item.name == "Stamina Potion":
@@ -79,14 +80,16 @@ class Player():
         elif dmgRoll == 10:
             enemy.hp -= self.damage
 
-damageBuff = Buff("Damage Buff", 5, "baseDamage")     
+damageBuff = Buff("Damage Buff")     
 daniel = Player("Daniel")
 sword = Weapon("Sword", 4)
-sword.setPlayerDMG(daniel)
+daniel.setPlayerDMG(sword)
 print(daniel.damage)
 print(daniel.baseDamage)
 mace = Weapon("Mace", 7)
-mace.setPlayerDMG(daniel)
+daniel.setPlayerDMG(mace)
 print(daniel.damage)
 print(daniel.baseDamage)
 damageBuff.buffPlayer(daniel)
+print(daniel.damage)
+print(daniel.baseDamage)

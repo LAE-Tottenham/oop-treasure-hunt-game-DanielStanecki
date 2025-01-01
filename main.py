@@ -1,6 +1,6 @@
 from place import Place
 from player import Player
-from item import Item, Weapon
+from item import Item, Weapon, Buff
 from enemies import Enemy, Boss
 import time
 import random
@@ -88,6 +88,7 @@ theCrimsonAbyss = Place("The Crimson Abyss", True)
 #potions
 hpPotion = Item("HP Potion")
 staminaPotion = Item("Stamina Potion")
+buff = Buff("Buff")
 
 
 # weapons
@@ -206,8 +207,11 @@ After entering the void, you should return back to your homeworld. However, bewa
             print("You currently lack the items to go to any locations")
             pass
         elif opt == "2":
-            print("""As you approach the glistening item, you start to see its shape; a long, pointed objected.
-You pick it up in your hand, and you realise that it is a sword""")
+            print("""
+As you approach the glistening item, you start to see its shape; a bottle of some sorts.
+You pick it up in your hand, and you realise that it is a health potion!
+""")        
+            player.addItem(hpPotion)
             pass
         elif opt == "3":
             print(player.inventory)
@@ -250,9 +254,10 @@ You take out your own sword, and the fight begins!
             dropChance = random.randint(1, 101)
             if dropChance >= 50: 
                 print("The skeleton dropped a sword!")
-                sword.setPlayerDMG(player)
+                player.setPlayerDMG(sword)
             elif dropChance == 1: 
                 print("You got a very rare weapon from the skeleton!")
+                player.setPlayerDMG(goldSword)
             print("""
 That is how combat works; make sure that you are strong enough to fight an enemy. 
 """)
@@ -277,7 +282,7 @@ You walk to the man, and he looks up at you.
         """)        
             if opt == "1": 
                 print("- Pleasure doing business!")
-                player.addItem(hpPotion.name)
+                player.addItem(hpPotion)
                 player.money -= 15
             
             else: 
@@ -339,6 +344,14 @@ You walk to the man, and he looks up at you.
         print("You look at it, intrigued by it, when it suddenly jumps out at you and attacks!")
         bossCombat(player, fishMonster)
         print("Congratulations, you have defeated the first boss in the game!")
+        print("It seems that you have gotten stronger by defeating this boss...")
+        buff.buffPlayer(player)
+
+        opt = input("""
+    What would you like to do now? 
+    1: Go to the next area
+    2
+                    """)
 
             
 game = Game()

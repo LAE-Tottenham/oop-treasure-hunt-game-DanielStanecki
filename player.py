@@ -18,7 +18,7 @@ class Player():
 
     def addItem(self, item_instance):
         if self.calculateInventory_size() < self.inventoryMax:
-            self.inventory.append(item_instance)
+            self.inventory.append(item_instance.name)
         else:
             print("Your inventory is full...")
 
@@ -28,7 +28,11 @@ class Player():
         self.inventory.remove(item)
 
     def viewStats(self): 
-        print(f"Player Health: {self.health}           Energy: {self.energy}")
+        print(f"Player Health: {self.health}    Energy: {self.energy}    Damage: {self.damage}")
+
+    def setPlayerDMG(self, weapon): 
+        self.weaponDamage = weapon.weaponDMG
+        self.damage = self.baseDamage + self.weaponDamage
         
     def useItem(self, item):
         if item.name in self.inventory: 
