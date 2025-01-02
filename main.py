@@ -12,9 +12,12 @@ def buy(player):
     2: No                          
 """)            
     if buy == "1": 
-        player.addItem(hpPotion)
-        player.money -= 10
-        print("Thank you for your purchase.")
+        if player.money >= 10: 
+            player.addItem(hpPotion)
+            player.money -= 10
+            print("Thank you for your purchase.")
+        else: 
+            print("You do not have enough money to buy this.")
     else:
         print("How unfortunate, have a nice day.") 
         
@@ -415,9 +418,55 @@ You walk to the man, and he looks up at you.
 """)
             if opt == "1": 
                 buy(player)
+            elif opt == "3": 
+                print(player.inventory)
+            elif opt == "4": 
+                player.viewStats()
+            elif opt == "5": 
+                player.useItem(hpPotion)
+        
+        print("You take a sip of the clear water, and you feel yourself heal!")
+        player.health = player.maxHealth
+        player.viewStats()
+
+        print("You walk along the small pool by the waterfall.")
+        opt = input("""
+    Do you want to search behind the waterfall? There is a possibilty of hidden treasure... 
+    1: Yes
+    2: No
+    """)
+        if opt == "1": 
+            print("You found a treasure chest!")
+            chance = random.randint(1, 101)
+            if chance <= 10: 
+                print("You have obtained a very rare hammer!")
+                player.setPlayerDMG(goldHammer)
+                print(f"Damage: {player.damage}")
+            else: 
+                print("You have obtained a hammer!")
+                player.setPlayerDMG(hammer)
+                print(f"Damage: {player.damage}")
+        else: 
+            pass
+        
+        opt = " "
+        while opt != "2":
+            opt = input("""
+    There is a cave ahead. What would you like to do? 
+    1: Buy from the Merchant
+    2: Enter the cave
+    3: Pick up nearby item
+    4: View Stats
+    5: View Inventory
+    6: Heal             
+    """)
+            if opt == "1": 
+                buy(player)
+            elif opt == "3"
 
 game = Game()
 game.setup()
 game.start()
 
 #test
+

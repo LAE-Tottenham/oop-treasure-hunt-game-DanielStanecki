@@ -9,7 +9,7 @@ class Player():
         self.energy = 50
         self.inventoryMax = 12
         self.inventory = []
-        self.baseDamage = 2
+        self.baseDamage = 3
         self.weaponDamage = 0
         self.damage = self.baseDamage + self.weaponDamage
         self.money = 100
@@ -29,7 +29,7 @@ class Player():
         self.inventory.remove(item)
 
     def viewStats(self): 
-        print(f"Player Health: {self.health}    Energy: {self.energy}    Damage: {self.damage}")
+        print(f"Player Health: {self.health}    Energy: {self.energy}    Damage: {self.damage}  Money: {self.money}")
 
     def setPlayerDMG(self, weapon): 
         self.weaponDamage = weapon.weaponDMG
