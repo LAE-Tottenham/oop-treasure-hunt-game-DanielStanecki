@@ -138,11 +138,10 @@ theGoldVoidSword = Weapon("The Gold Void Sword", 30)
 
 #enemies
 skeleton = Enemy("Skeleton", 1, 25)
-manGoat = Enemy("Man-Goat", 3, 30)
-crystalZombie = Enemy("Crystal Zombie", 5, 35)
 
 #boss
 fishMonster = Boss("Fish Monster", 5, 40, 10)
+goatMonster = Boss("Goat Monster", 5, 42, 11)
 
 class Game():
     def __init__(self):
@@ -269,7 +268,7 @@ You take out your own sword, and the fight begins!
             
             combat(player, skeleton)
             dropChance = random.randint(1, 101)
-            if dropChance >= 50: 
+            if dropChance >= 20: 
                 print("The skeleton dropped a sword!")
                 player.setPlayerDMG(sword)
             elif dropChance == 1: 
@@ -448,7 +447,7 @@ You walk to the man, and he looks up at you.
                 print(f"Damage: {player.damage}")
         else: 
             pass
-        
+        found = False
         opt = " "
         while opt != "2":
             opt = input("""
@@ -459,10 +458,30 @@ You walk to the man, and he looks up at you.
     4: View Stats
     5: View Inventory
     6: Heal             
-    """)
+    """)    
             if opt == "1": 
                 buy(player)
-            elif opt == "3"
+            elif opt == "3":
+                if found == False:
+                    print("You found a health potion and some money!")
+                    player.addItem(hpPotion)
+                    found = True
+                else: 
+                    print("There is nothing left.")
+                player.money += 20
+            elif opt == "4": 
+                player.viewStats()
+            elif opt == "5": 
+                print(player.inventory)
+            elif opt == "6": 
+                player.useItem(hpPotion)
+
+        print("You enter the cave, your footsteps echoeing into the darkness.")
+        print("You hear footsteps coming towards you.")
+        print("You see a huge goat monster walking towards you.")
+        print("You take your weapon out, and prepare for battle")
+        time.sleep(1.25)
+        bossCombat(player, goatMonster)
 
 game = Game()
 game.setup()
