@@ -476,16 +476,69 @@ You walk to the man, and he looks up at you.
             elif opt == "6": 
                 player.useItem(hpPotion)
 
-        print("You enter the cave, your footsteps echoeing into the darkness.")
+        print("You enter the cave, your footsteps echoing into the darkness.")
         print("You hear footsteps coming towards you.")
         print("You see a huge goat monster walking towards you.")
         print("You take your weapon out, and prepare for battle")
         time.sleep(1.25)
         bossCombat(player, goatMonster)
+        print("Congratulations, you have defeated the Goat Monster!")
+        print("You see a glider laid against the cave wall. You pick it up.")
+        print("It seems that defeating the boss has made you stronger....")
+        buff.buffPlayer(player)
+        player.health = player.maxHealth
+
+        opt = " "
+        while opt != "1": 
+            opt = input("""
+    What would you like to do? 
+    1: Glide off the mountain using your new glider
+    2: Buy from the Merchant
+    3: View Stats
+    4: View Inventory
+    5: Try climb the mountain further                    
+    """)
+            if opt == "2": 
+                buy(player)
+            elif opt == "3": 
+                player.viewStats()
+            elif opt == "4": 
+                print(player.inventory)
+            elif opt == "5": 
+                print("You try climbing the mountain, but your gloves have lost their grip!")
+                print("You slip and take damage!")
+                player.health -= 5
+
+        print("You jump off the cliff, holding tightly onto the glider")
+        print("After gliding for a short while, you land onto a huge crossroad")
+        print("The roads are huge, and you see a huge figure sitting on the edge of the road.")
+        time.sleep(2)
+        print("The huge Giant walks up to you")
+        print("- I have a riddle for you, in order for you to pass. ")
+        ans = " "
+        while ans != "candle" and ans != "a candle": 
+            ans = input("""- What gets shorter the older it gets? 
+            """).lower()
+            if ans != "candle" and ans != "a candle": 
+                print("- Incorrect, try again")
+            else: 
+                pass
+        print("- Well done!")
+        print("- You deserve a reward for this! Here is a weapon!")
+        chance = random.randint(1, 101)
+        if chance <= 80: 
+            print("You got a spear")
+            player.setPlayerDMG(spear)
+        else: 
+            print("You got a gold spear!! It is very rare!")
+            player.setPlayerDMG(goldSpear)
+        player.viewStats()
+        print("- You may continue")
+
+        print()
 
 game = Game()
 game.setup()
 game.start()
 
 #test
-
