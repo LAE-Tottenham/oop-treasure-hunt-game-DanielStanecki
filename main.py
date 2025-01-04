@@ -184,7 +184,7 @@ class Game():
         self.current_place = forgottenLake
         
         # finish the setup function...
-'''
+
     def start(self):
         print("Welcome to my game!")
         print("""You are a lone traveler that has found themselves in a foreign land, looking for the treasure that belongs to the Demon King Crimson. The only way to leave this fantastical world is to defeat the Demon King, and enter the void.
@@ -587,47 +587,78 @@ You walk to the man, and he looks up at you.
         print("You find some money laying around. ")
         print("As soon as you touch the money, a huge Giant, wearing a complete set of chainmail armour, walks up to you, wielding a humongous hammer!")
         print("You prepare for battle!")
-        bossCombat(player, giantWarrior)            
+        bossCombat(player, giantWarrior)
         buff.buffPlayer(player)
         print("You seem to have gotten stronger...")
+        player.health = player.maxHealth
+        player.money += 30
+        player.viewStats()
         time.sleep(1)
         print("You examine the table in the living room, and you find a map of the area!")
         print("You take the map and stuff it in your bag.")
 
-game = Game()
-game.setup()
-game.start()'''
+        opt = " "
+        while opt != "2": 
+            opt = input("""
+    What would you like to do now? 
+    1: Jump off a ramp using the glider
+    2: Follow the map
+    3: Buy from the merchant
+    4: View Stats
+    5: View Inventory
+    6: Heal
+    """)
+            if opt == "1": 
+                print("You run up the ramp and jump off, but you are not high enough, and fall face flat into the mud")
+                print("You take damage.")
+                player.health -= 5
+            elif opt == "3": 
+                buy(player)
+            elif opt == "4": 
+                player.viewStats()
+            elif opt == "5": 
+                print(player.inventory)
+            elif opt == "6": 
+                player.useItem(hpPotion)
 
-#test
-player = Player("daniel")
-print("You turn right, and you walk on the smooth road.")
-print("A merchant sits on a bench to the side, and there is a huge mansion ahead. ")
-opt = " "
-while opt != "1": 
+        print("You follow the map, which leads to a place called Crimson's Rest")
+        time.sleep(1.25)
+        print("After a short while of walking, you reach graveyard, with red grass. ")
+        print("This is Crimson's Rest")
+        time.sleep(1.25)
+        print("You see a larger tombstone at the centre of the cemetery and there is a man sitting on a bench to the side. ")
+        opt = " "
+        while opt != "1": 
             opt = input("""
     What would you like to do? 
-    1: Enter the mansion
-    2: Buy something from the Merchant
+    1: Inspect the largest tombstone
+    2: Speak to the man on the bench
     3: View Stats
     4: View Inventory
-    5: Heal                 
+    5: Heal        
     """)
             if opt == "2": 
-                buy(player)
-            elif opt == "3": 
-                player.viewStats()
-            elif opt == "4": 
-                print(player.inventory)
-            elif opt == "5": 
-                player.useItem(hpPotion)
-            
-print("You walk through the unlocked door of the mansion and wander around for a while. ")
-print("You find some money laying around. ")
-print("As soon as you touch the money, a huge Giant, wearing a complete set of chainmail armour, walks up to you, wielding a humongous hammer!")
-print("You prepare for battle!")
-bossCombat(player, giantWarrior)
-buff.buffPlayer(player)
-print("You seem to have gotten stronger...")
-time.sleep(1)
-print("You examine the table in the living room, and you find a map of the area!")
-print("You take the map and stuff it in your bag.")
+                print("You walk up to the man on the bench")
+                print("He looks up at you")
+                time.sleep(1.25)
+                buy = input("""
+    - Good day, would you be interested in buying a weapon for 40 gold?
+    1: Yes
+    2: No
+    """)
+                if buy == "1": 
+                    chance = random.randint(1, 101)
+                    if chance <= 95: 
+                        print("You have bought a Bow and Arrow!")
+                        player.setPlayerDMG(bowAndArrow)
+                        player.viewStats()
+                    else: 
+                        print("You have bought a Gold Bow and Arrow")
+                        player.setPlayerDMG(goldBowAndArrow)
+                        player.viewStats()
+game = Game()
+game.setup()
+game.start()
+
+#test
+
