@@ -143,6 +143,7 @@ giant = Enemy("Giant", 3, 33)
 #boss
 fishMonster = Boss("Fish Monster", 5, 40, 10)
 goatMonster = Boss("Goat Monster", 5, 42, 11)
+giantWarrior = Boss("Giant Warrior", 7, 75, 13)
 
 class Game():
     def __init__(self):
@@ -180,26 +181,6 @@ class Game():
         capitalOutskirts.add_next_place(theCrimsonAbyss)
         theCrimsonAbyss.add_next_place(capitalOutskirts)
 
-        #potions
-        hpPotion = Item("HP Potion")
-        staminaPotion = Item("Stamina Potion")
-
-
-        # weapons
-        sword = Weapon("Sword", 3)
-        hammer = Weapon("Hammer", 4)
-        spear = Weapon("Spear", 5)
-        bowAndArrow = Weapon("Bow and Arrow", 6)
-        greatsword = Weapon("Greatsword", 7)
-        axe = Weapon("Axe", 8)
-        mace = Weapon("Mace", 9)
-        magicStaff = Weapon("Magic Staff", 10)
-        dagger = Weapon("Dagger", 11)
-        goldSword = Weapon("Gold Sword", 12)
-        trident = Weapon("Trident", 13)
-        katana = Weapon("Katana", 14)
-        theVoidSword = Weapon("The Void Sword", 15)
-        
         self.current_place = forgottenLake
         
         # finish the setup function...
@@ -550,7 +531,7 @@ You walk to the man, and he looks up at you.
             if opt == "1":
                 if found1 == False: 
                     print("You take the left path and you see ")
-                    print("An intimidating Giant stands there, and reaches for his sword as soon as he sees you!")
+                    print("An intimidating Giant stands there, and reaches for his spear as soon as he sees you!")
                     time.sleep(1.25)
                     combat(player, giant)
                     chance = random.randint(1, 101)
@@ -580,6 +561,38 @@ You walk to the man, and he looks up at you.
                 else: 
                     print("You have already walked this path.")
                     print("You return to the crossroads.")
+        
+        print("You turn right, and you walk on the smooth road.")
+        print("A merchant sits on a bench to the side, and there is a huge mansion ahead. ")
+        opt = " "
+        while opt != "1": 
+            opt = input("""
+    What would you like to do? 
+    1: Enter the mansion
+    2: Buy something from the Merchant
+    3: View Stats
+    4: View Inventory
+    5: Heal                 
+    """)
+            if opt == "2": 
+                buy(player)
+            elif opt == "3": 
+                player.viewStats()
+            elif opt == "4": 
+                print(player.inventory)
+            elif opt == "5": 
+                player.useItem(hpPotion)
+            
+        print("You walk through the unlocked door of the mansion and wander around for a while. ")
+        print("You find some money laying around. ")
+        print("As soon as you touch the money, a huge Giant, wearing a complete set of chainmail armour, walks up to you, wielding a humongous hammer!")
+        print("You prepare for battle!")
+        bossCombat(player, giantWarrior)            
+        buff.buffPlayer(player)
+        print("You seem to have gotten stronger...")
+        time.sleep(1)
+        print("You examine the table in the living room, and you find a map of the area!")
+        print("You take the map and stuff it in your bag.")
 
 game = Game()
 game.setup()
@@ -587,46 +600,34 @@ game.start()'''
 
 #test
 player = Player("daniel")
+print("You turn right, and you walk on the smooth road.")
+print("A merchant sits on a bench to the side, and there is a huge mansion ahead. ")
 opt = " "
-found1 = False
-found2 = False
-while opt != "2": 
+while opt != "1": 
             opt = input("""
-    Where will you go now? 
-    1: Left
-    2: Right
-    3: Straight
+    What would you like to do? 
+    1: Enter the mansion
+    2: Buy something from the Merchant
+    3: View Stats
+    4: View Inventory
+    5: Heal                 
     """)
-            if opt == "1":
-                if found1 == False: 
-                    print("You take the left path and you see ")
-                    print("An intimidating Giant stands there, and reaches for his sword as soon as he sees you!")
-                    time.sleep(1.25)
-                    combat(player, giant)
-                    chance = random.randint(1, 101)
-                    if chance <= 90: 
-                        print("The giant dropped a spear!")
-                        player.setPlayerDMG(spear)
-                        player.viewStats()
-                    else: 
-                        print("You found a gold spear! It is very rare!")
-                        player.setPlayerDMG(goldSpear)
-                        player.viewStats()
-                    found1 = True
-                    print("There is nothing beyond, so you return back to the crossroads.")
-                else: 
-                    print("You have already walked this path.")
-                    print("You return back to the crossroads.")
+            if opt == "2": 
+                buy(player)
             elif opt == "3": 
-                if found2 == False: 
-                    print("You walk straight, and you find a treasure chest!")
-                    print("Inside, you find money and a health potion.")
-                    player.addItem(hpPotion)
-                    player.money += 40
-                    player.viewStats()
-                    print("There is nothing beyond the treasure chest.")
-                    print("You return to the crossroads.")
-                    found2 = True
-                else: 
-                    print("You have already walked this path.")
-                    print("You return to the crossroads.")
+                player.viewStats()
+            elif opt == "4": 
+                print(player.inventory)
+            elif opt == "5": 
+                player.useItem(hpPotion)
+            
+print("You walk through the unlocked door of the mansion and wander around for a while. ")
+print("You find some money laying around. ")
+print("As soon as you touch the money, a huge Giant, wearing a complete set of chainmail armour, walks up to you, wielding a humongous hammer!")
+print("You prepare for battle!")
+bossCombat(player, giantWarrior)
+buff.buffPlayer(player)
+print("You seem to have gotten stronger...")
+time.sleep(1)
+print("You examine the table in the living room, and you find a map of the area!")
+print("You take the map and stuff it in your bag.")
