@@ -138,6 +138,7 @@ theGoldVoidSword = Weapon("The Gold Void Sword", 30)
 
 #enemies
 skeleton = Enemy("Skeleton", 1, 25)
+giant = Enemy("Giant", 3, 33)
 
 #boss
 fishMonster = Boss("Fish Monster", 5, 40, 10)
@@ -202,7 +203,7 @@ class Game():
         self.current_place = forgottenLake
         
         # finish the setup function...
-
+'''
     def start(self):
         print("Welcome to my game!")
         print("""You are a lone traveler that has found themselves in a foreign land, looking for the treasure that belongs to the Demon King Crimson. The only way to leave this fantastical world is to defeat the Demon King, and enter the void.
@@ -535,10 +536,97 @@ You walk to the man, and he looks up at you.
         player.viewStats()
         print("- You may continue")
 
-        print()
+        print("You pass by the Giant and you come to a massive crossroad.")
+        opt = " "
+        found1 = False
+        found2 = False
+        while opt != "2": 
+            opt = input("""
+    Where will you go now? 
+    1: Left
+    2: Right
+    3: Straight
+    """)
+            if opt == "1":
+                if found1 == False: 
+                    print("You take the left path and you see ")
+                    print("An intimidating Giant stands there, and reaches for his sword as soon as he sees you!")
+                    time.sleep(1.25)
+                    combat(player, giant)
+                    chance = random.randint(1, 101)
+                    if chance <= 90: 
+                        print("The giant dropped a spear!")
+                        player.setPlayerDMG(spear)
+                        player.viewStats()
+                    else: 
+                        print("You found a gold spear! It is very rare!")
+                        player.setPlayerDMG(goldSpear)
+                        player.viewStats()
+                    found1 = True
+                    print("There is nothing beyond, so you return back to the crossroads.")
+                else: 
+                    print("You have already walked this path.")
+                    print("You return back to the crossroads.")
+            elif opt == "3": 
+                if found2 == False: 
+                    print("You walk straight, and you find a treasure chest!")
+                    print("Inside, you find money and a health potion.")
+                    player.addItem(hpPotion)
+                    player.money += 40
+                    player.viewStats()
+                    print("There is nothing beyond the treasure chest.")
+                    print("You return to the crossroads.")
+                    found2 = True
+                else: 
+                    print("You have already walked this path.")
+                    print("You return to the crossroads.")
 
 game = Game()
 game.setup()
-game.start()
+game.start()'''
 
 #test
+player = Player("daniel")
+opt = " "
+found1 = False
+found2 = False
+while opt != "2": 
+            opt = input("""
+    Where will you go now? 
+    1: Left
+    2: Right
+    3: Straight
+    """)
+            if opt == "1":
+                if found1 == False: 
+                    print("You take the left path and you see ")
+                    print("An intimidating Giant stands there, and reaches for his sword as soon as he sees you!")
+                    time.sleep(1.25)
+                    combat(player, giant)
+                    chance = random.randint(1, 101)
+                    if chance <= 90: 
+                        print("The giant dropped a spear!")
+                        player.setPlayerDMG(spear)
+                        player.viewStats()
+                    else: 
+                        print("You found a gold spear! It is very rare!")
+                        player.setPlayerDMG(goldSpear)
+                        player.viewStats()
+                    found1 = True
+                    print("There is nothing beyond, so you return back to the crossroads.")
+                else: 
+                    print("You have already walked this path.")
+                    print("You return back to the crossroads.")
+            elif opt == "3": 
+                if found2 == False: 
+                    print("You walk straight, and you find a treasure chest!")
+                    print("Inside, you find money and a health potion.")
+                    player.addItem(hpPotion)
+                    player.money += 40
+                    player.viewStats()
+                    print("There is nothing beyond the treasure chest.")
+                    print("You return to the crossroads.")
+                    found2 = True
+                else: 
+                    print("You have already walked this path.")
+                    print("You return to the crossroads.")

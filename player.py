@@ -9,8 +9,8 @@ class Player():
         self.energy = 50
         self.inventoryMax = 12
         self.inventory = []
-        self.baseDamage = 2
-        self.weaponDamage = 0
+        self.baseDamage = 4
+        self.weaponDamage = 4
         self.damage = self.baseDamage + self.weaponDamage
         self.money = 100
         
