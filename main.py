@@ -144,6 +144,7 @@ giant = Enemy("Giant", 3, 33)
 fishMonster = Boss("Fish Monster", 5, 40, 10)
 goatMonster = Boss("Goat Monster", 5, 42, 11)
 giantWarrior = Boss("Giant Warrior", 7, 75, 13)
+centaur = Boss("Centaur", 8, 90, 14)
 
 class Game():
     def __init__(self):
@@ -591,7 +592,7 @@ You walk to the man, and he looks up at you.
         buff.buffPlayer(player)
         print("You seem to have gotten stronger...")
         player.health = player.maxHealth
-        player.money += 30
+        player.money += 100
         player.viewStats()
         time.sleep(1)
         print("You examine the table in the living room, and you find a map of the area!")
@@ -641,22 +642,64 @@ You walk to the man, and he looks up at you.
                 print("You walk up to the man on the bench")
                 print("He looks up at you")
                 time.sleep(1.25)
-                buy = input("""
+                choice = input("""
     - Good day, would you be interested in buying a weapon for 40 gold?
     1: Yes
     2: No
     """)
-                if buy == "1": 
+                if choice == "1": 
+                    money -= 40
                     chance = random.randint(1, 101)
                     if chance <= 95: 
                         print("You have bought a Bow and Arrow!")
                         player.setPlayerDMG(bowAndArrow)
                         player.viewStats()
                     else: 
-                        print("You have bought a Gold Bow and Arrow")
+                        print("You have bought a Gold Bow and Arrow! You were very lucky to get this rare item for such a low price!")
                         player.setPlayerDMG(goldBowAndArrow)
                         player.viewStats()
-game = Game()
+            elif opt == "3": 
+                player.viewStats()
+            elif opt == "4": 
+                print(player.inventory)
+            elif opt == "5": 
+                player.useItem(hpPotion)
+            
+        print("You approach the big tombstone, and walk around it.")
+        time.sleep(1)
+        print("You find a two buttons on the back of the tombstone.")
+        print("Alongside the buttons, there is something written on the tombstone")
+        time.sleep(1)
+        opt = input("""
+    - Is the number 1 a prime number? 
+    1: Press the button labelled "yes"
+    2: Press the button labelled "no"          
+    """)
+        if opt == "1": 
+            print("You hear a voice shout from below!")
+            print("- NO!!!!")
+            time.sleep(1)
+            print("A centaur leaps out from under the grave, sword and shield in hand, ready to fight you for your fatal mathematical mistake.")
+            print("You prepare to fight")
+            bossCombat(player, centaur)
+        elif opt == "2": 
+            print("You hear a voice happily shout from beneath the grave. ")
+            print("A centaur leaps from under the grave, holding some sort of treasure chest in its arms")
+            time.sleep(1)
+            print("- Well done for solving this simple mathematical problem!")
+            print("- As your reward, you can have this treasure chest! Also, you avoid my wrath, ha ha ha ha ha...")
+            time.sleep(1)
+            print("You open the treasure chest to find 3 health potions and lots of money!")
+            player.addItem(hpPotion)
+            player.addItem(hpPotion)
+            player.addItem(hpPotion)
+            player.money += 50
+        
+        print("You seem to have gotten stronger...")
+        print("The centaur seems to have left behind a lamp. You pick it up and put it in your bag.")
+        
+
+game = Game() 
 game.setup()
 game.start()
 

@@ -3,14 +3,14 @@ import random
 class Player():
     def __init__(self, given_name):
         self.name = given_name
-        self.maxHealth = 150
+        self.maxHealth = 100
         self.maxEnergy = 100
-        self.health = 150
+        self.health = 100
         self.energy = 50
         self.inventoryMax = 12
         self.inventory = []
-        self.baseDamage = 4
-        self.weaponDamage = 5
+        self.baseDamage = 2
+        self.weaponDamage = 0
         self.damage = self.baseDamage + self.weaponDamage
         self.money = 100
         
