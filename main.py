@@ -151,14 +151,16 @@ theGoldVoidSword = Weapon("The Gold Void Sword", 30)
 skeleton = Enemy("Skeleton", 1, 25)
 giant = Enemy("Giant", 3, 33)
 ghost = Enemy("Enemy", 6, 60)
+crystalDog = Enemy("Crystal Dog", 9, 80)
 
 #boss
 fishMonster = Boss("Fish Monster", 5, 40, 10)
 goatMonster = Boss("Goat Monster", 5, 42, 11)
 giantWarrior = Boss("Giant Warrior", 7, 75, 13)
 centaur = Boss("Centaur", 8, 90, 14)
-mageSpirit = Boss("Mage Spirit", 12, 100, 15)
-spider = Boss("Spider", 14, 110, 17)
+mageSpirit = Boss("Mage Spirit", 9, 100, 15)
+spider = Boss("Spider", 10, 110, 17)
+crystalZombie = Boss("Crystal Zombie", 14, 150, 20)
 
 class Game():
     def __init__(self):
@@ -954,17 +956,118 @@ You walk to the man, and he looks up at you.
                 player.useItem(hpPotion)
             elif opt == "7": 
                 player.useItem(staminaPotion)
-'''
+
+        print("You use the silk cutters to tear through the webs covering the door way. ")
+        time.sleep(1)
+        print("You open the door, and walk through it.")
+        time.sleep(1)
+        print("You find yourself on another mountain, and you see a huge crystal on the peak of the mountain.")
+        time.sleep(1)
+        print("You see some sort of building below the crystal, and a dog of some sorts resting on the side.")
+        opt = " "
+        while opt != "2": 
+            opt = input("""
+    What would you like to do
+    1: Go to the dog
+    2: Go to the building
+    3: View Stats
+    4: View Inventory
+    5: Heal
+    6: Replenish Energy       
+    """)    
+            if opt == "1": 
+                print("You walk up to the dog, and you realise it has crystals growing on its back!")
+                time.sleep(1)
+                print("The dog turns around and bares its teeth at you!")
+                print("You take your sword out!")
+                time.sleep(1)
+                combat(player, crystalDog)
+                chance = random.randint(1, 101)
+                if chance <= 95: 
+                    print("You got a mace!")
+                    player.setPlayerDMG(mace)
+                    player.viewStats()
+                else: 
+                    print("You got a gold mace! It is very rare!")
+                    player.setPlayerDMG(goldMace)
+                    player.viewStats()
+            elif opt == "3": 
+                player.viewStats()
+            elif opt == "4": 
+                print(player.inventory)
+            elif opt == "5": 
+                player.useItem(hpPotion)
+            elif opt == "6": 
+                player.useItem(staminaPotion)
+        
+        print("You go towards the building but it seems to be locked")
+        opt = ("""
+    What do you do? 
+    1: Break it down
+    2: Knock on it politely           
+    """)
+        if opt == "1": 
+            print("You barge into the building, and you find a crystal creature resting inside")
+            print("- Who are you! Why are you here!")
+            time.sleep(1)
+            print("The creature takes its weapon out, and prepares to fight!")
+            print("You prepare for battle!")
+            time.sleep(1)
+            bossCombat(player, crystalZombie)
+            print("You have defeated the crystal zombie!")
+            print("You find a Golden Key laying on the table, and take it.")
+            print("Are you happy now that you have disrupted an innocents creature its life? ")
+        elif opt == "2": 
+            print("You hear footsteps heading towards the door.")
+            time.sleep(1.25)
+            print("When the door opens, you see a humanoid crystal.")
+            print("- Why, hello there!, Welcome, adventurer, I've been awaiting you!")
+            time.sleep(1)
+            print("- I have something that may be useful for your journey.")
+            print("The crystal creature gives you a health potion and some money.")
+            print("Also, he gives you a Golden Key.")
+            player.addItem(hpPotion)
+            player.money += 40
+        
+        print("You exit the house.")
+        print("You seem to have gotten stronger...")
+        buff.buffPlayer(player)
+        opt = " "
+        while opt != "1": 
+            opt = ("""
+    What would you like to do now? 
+    1: Use the Golden Key to open the huge door into the mountain
+    2: Try to cut through the crystal using the Silk Cutters
+    3: Buy from the Merchant
+    4: View Stats
+    5: View Inventory
+    6: Heal
+    7: Replenish Energy               
+    """)
+            if opt == "2": 
+                print("You try to cut the crystal, but just end up cutting yourself!")
+                print("You take damage!")
+                player.hurt(10)
+            elif opt == "3": 
+                buy(player)
+            elif opt == "4": 
+                player.viewStats()
+            elif opt == "5": 
+                print(player.inventory)
+            elif opt == "6": 
+                player.useItem(hpPotion)
+            elif opt == "7": 
+                player.useItem(staminaPotion)
+
+        print("You walk up to the huge door in the mountain and insert the Golden Key into the small keyhole.")
+        time.sleep(1)
+        print("You push the door open and enter slowly.")
+
+
 game = Game() 
 game.setup()
-game.start()'''
+game.start()
 
 #test
 
-player = Player("Daniel")
-player.addItem(staminaPotion)
-print(player.inventory)
-player.viewStats()
-player.useItem(staminaPotion)
-player.viewStats()
-print(player.inventory)
+
