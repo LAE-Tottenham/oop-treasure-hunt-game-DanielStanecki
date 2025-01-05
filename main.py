@@ -150,12 +150,14 @@ theGoldVoidSword = Weapon("The Gold Void Sword", 30)
 #enemies
 skeleton = Enemy("Skeleton", 1, 25)
 giant = Enemy("Giant", 3, 33)
+ghost = Enemy("Enemy", 6, 60)
 
 #boss
 fishMonster = Boss("Fish Monster", 5, 40, 10)
 goatMonster = Boss("Goat Monster", 5, 42, 11)
 giantWarrior = Boss("Giant Warrior", 7, 75, 13)
 centaur = Boss("Centaur", 8, 90, 14)
+mageSpirit = Boss("Mage Spirit", 12, 100, 15)
 
 class Game():
     def __init__(self):
@@ -737,7 +739,83 @@ You walk to the man, and he looks up at you.
                 print("You follow the trail on the map, but it leads you into a trap and you take damage!")
                 player.hurt(10)
                 player.viewStats()
+            elif opt == "3": 
+                player.viewStats()
+            elif opt == "4": 
+                print(player.inventory)
+            elif opt == "5": 
+                player.useItem(hpPotion)
+        
+        print("You light the lamp, and you see some sort of smokey essence.")
+        print("You follow the smoke, and it eventually leads you to a peninsula of some sorts.")
+        time.sleep(1)
+        print("You are in the Forgotten Peninsula")
+        print("The area looks desolate, not a soul in sight, but you see an abandoned shack ahead")
+        time.sleep(1)
+        opt = " "
+        found = False
+        while opt != "2": 
+            opt = input("""
+    What would you like to do? 
+    1: Pick up the nearby item
+    2: Go to the abandoned shack
+    3: View Stats
+    4: View Inventory
+    5: Heal                 
+    """)
+            if opt == "1": 
+                if found == False: 
+                    print("You walk up to the item lodged into the ground.")
+                    chance = random.randint(1, 101)
+                    if chance <= 85: 
+                        print("You found a Greatsword!")
+                        player.setPlayerDMG(greatsword)
+                        player.viewStats()
+                        found = True
+                    else: 
+                        print("You found a Gold Greatsword! It is very rare!")
+                        player.setPlayerDMG(goldGreatsword)
+                        player.viewStats()
+                else: 
+                    print("You have already picked up the item.")
+            elif opt == "3": 
+                player.viewStats()
+            elif opt == "4": 
+                print(player.inventory)
+            elif opt == "5": 
+                player.useItem(hpPotion)
 
+        print("You enter the rusty shack, and, to your surprise, a ghost attacks you!")
+        time.sleep(1)
+        combat(player, ghost)
+        print("You find a health potion on the table behind!")
+        time.sleep(1)
+        player.addItem(hpPotion)
+
+        print("Also, you find the Merchant tied up, so you free him.")
+        opt = " "
+        while opt != "1": 
+            opt = input("""
+    What will you do now? 
+    1: Explore the peninsula further
+    2: Buy from the Merchant
+    3: View Stats
+    4: View Inventory
+    5: Heal                   
+    """)
+            if opt == "2": 
+                buy(player)
+            elif opt == "3": 
+                player.viewStats()
+            elif opt == "4": 
+                print(player.inventory)
+            elif opt == "5": 
+                player.useItem(hpPotion)
+            
+        print("As you walk around the peninsula, a Mage Spirit attacks you!")
+        print("You prepare for battle!")
+        time.sleep(1.25)
+        bossCombat(player, mageSpirit)
         
 
 game = Game() 
