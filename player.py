@@ -4,11 +4,11 @@ class Player():
     def __init__(self, given_name):
         self.name = given_name
         self.maxHealth = 100
-        self.maxEnergy = 100
+        self.maxEnergy = 300
         self.health = 5
         self.energy = 50
         self.inventoryMax = 12
-        self.inventory = ["Revive"]
+        self.inventory = []
         self.baseDamage = 2
         self.weaponDamage = 0
         self.damage = self.baseDamage + self.weaponDamage

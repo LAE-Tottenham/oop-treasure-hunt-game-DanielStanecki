@@ -158,6 +158,7 @@ goatMonster = Boss("Goat Monster", 5, 42, 11)
 giantWarrior = Boss("Giant Warrior", 7, 75, 13)
 centaur = Boss("Centaur", 8, 90, 14)
 mageSpirit = Boss("Mage Spirit", 12, 100, 15)
+spider = Boss("Spider", 14, 110, 17)
 
 class Game():
     def __init__(self):
@@ -788,6 +789,7 @@ You walk to the man, and he looks up at you.
         print("You enter the rusty shack, and, to your surprise, a ghost attacks you!")
         time.sleep(1)
         combat(player, ghost)
+        print("You have defeated the ghost!")
         print("You find a health potion on the table behind!")
         time.sleep(1)
         player.addItem(hpPotion)
@@ -816,12 +818,153 @@ You walk to the man, and he looks up at you.
         print("You prepare for battle!")
         time.sleep(1.25)
         bossCombat(player, mageSpirit)
+        print("You have defeated the Mage Spirit!")
+        buff.buffPlayer(player)
+        print("It seems you have gotten stronger...")
+        print("In the spot where the Mage Spirit vanished, you see a medallion of some sorts on the ground.")
+        time.sleep(1)
+        print("You pick it up, and read 'Weaver's Medallion' on it. ")
+        time.sleep(1)
         
+        print("You walk forward, and come to an invisible barrier.")        
+        opt = " "
+        while opt != "1": 
+            opt = input("""
+    What would you like to do now? 
+    1: Insert the Weaver's Medallion into the invisble barrier
+    2: Throw the lamp into the invisble barrier
+    3: Buy from Merchant
+    4: View Stats
+    5: View Inventory
+    6: Heal                  
+    """)
+            if opt == "2": 
+                print("You hurl the lamp at the invisible barrier")
+                time.sleep(1)
+                print("The lamp explodes, and throws you back!")
+                print("You took damage!")
+                player.hurt(20)
+            elif opt == "3": 
+                buy(player)
+            elif opt == "4": 
+                player.viewStats()
+            elif opt == "5": 
+                print(player.inventory)
+            elif opt == "6": 
+                player.useItem(hpPotion)
+        
+        print("You place the medallion up against the barrier, and the invisible barrier erupts into a wall of fog!")
+        time.sleep(1)
+        print("You walk through the fog, to find yourself in a nest of some sorts, with webs sticking to everything.")
+        print("A sign in the distance reads 'Welcome to Weaver's Nest'. ")
+        time.sleep(1)
+        print("You see a chest surrounded by webs, and you also see a path straight ahead. ")
+        opt = " "
+        found = False
+        while opt != "2": 
+            opt = input("""
+    What would you like to do?
+    1: Break the webs and open the chest
+    2: Continue onwards
+    3: Buy from the Merchant
+    4: View Stats
+    5: View Inventory
+    6: Heal                   
+    """)    
+            if opt == "1": 
+                if found == False: 
+                    print("You use your hands to rip through the webs.")
+                    print("You feel tired after this.")
+                    player.energy -= 20
+                    print("You used up some energy!")
+                    player.viewStats()
+                    time.sleep(1)
+                    print("You open the chest and find a Health Potion and a Stamina Potion!")
+                    player.addItem(hpPotion)
+                    player.addItem(staminaPotion)
+                    found = True
+                else: 
+                    print("You have already opened this chest.")
+            elif opt == "3": 
+                buy(player)
+            elif opt == "4": 
+                player.viewStats()
+            elif opt == "5": 
+                print(player.inventory)
+            elif opt == "6": 
+                player.useItem(hpPotion)
 
+        print("You walk onwards, through the hallway of webs, until you reach a huge arena.")
+        time.sleep(1)
+        print("You see the audience watching from all around the arena.")
+        time.sleep(1)
+        print("A huge spider leaps into the center of the arena, and throws you a weapon.")
+        chance = random.randint(1, 101)
+        if chance <= 99: 
+            print("You got thrown an Axe!")
+            player.setPlayerDMG(axe)
+            player.viewStats()
+        else: 
+            print("You got thrown a Gold Axe! It is extremely rare!")
+            player.setPlayerDMG(goldAxe)
+            player.viewStats()
+        
+        time.sleep(1.25)
+        print("The spider speaks")
+        print("- Prepare for battle, human!")
+        print("You prepare to fight!")
+        time.sleep(1.25)
+        bossCombat(player, spider)
+
+        time.sleep(1.25)
+        print("You have defeated the spider!")
+        print("You seem to have gotten stronger...")
+        buff.buffPlayer(player)
+        player.health = player.maxHealth
+        player.viewStats()
+        print("The spider seems to have left behind some scissors, called the Silk Cutters.")
+        
+        opt = " "
+        while opt != "1": 
+            opt = input("""
+    What would you like to do now? 
+    1: Cut through the webs and escape using the Silk Cutters.
+    2: Insert the Weaver's Medallion into an opening. 
+    3: Buy from the Merchant
+    4: View Stats
+    5: View Inventory
+    6: Heal
+    7: Replenish Energy                
+    """)
+            if opt == "2": 
+                print("You insert the medallion into an opening in the door ahead.")
+                print("A trapdoor opens beneath you, and you fall into it, taking damage!")
+                time.sleep(1)
+                print("You take damage!")
+                player.hurt(15)
+                time.sleep(1)
+                print("You climb out of the hole.")
+            elif opt == "3": 
+                buy(player)
+            elif opt ==  "4": 
+                player.viewStats()
+            elif opt == "5": 
+                print(player.inventory)
+            elif opt == "6": 
+                player.useItem(hpPotion)
+            elif opt == "7": 
+                player.useItem(staminaPotion)
+'''
 game = Game() 
 game.setup()
-game.start()
+game.start()'''
 
 #test
 
-
+player = Player("Daniel")
+player.addItem(staminaPotion)
+print(player.inventory)
+player.viewStats()
+player.useItem(staminaPotion)
+player.viewStats()
+print(player.inventory)
