@@ -5,10 +5,10 @@ class Player():
         self.name = given_name
         self.maxHealth = 100
         self.maxEnergy = 100
-        self.health = 100
+        self.health = 5
         self.energy = 50
         self.inventoryMax = 12
-        self.inventory = []
+        self.inventory = ["Revive"]
         self.baseDamage = 2
         self.weaponDamage = 0
         self.damage = self.baseDamage + self.weaponDamage
@@ -17,15 +17,18 @@ class Player():
     def calculateInventory_size(self):
              return len(self.inventory) + 1
 
-    def damage(self, damage, revive): 
-        self.health -= damage
+    def hurt(self, hurt): 
+        self.health -= hurt
         if self.health <= 0: 
-            if revive.name in self.inventory: 
+            if "Revive" in self.inventory: 
                 print("You dodged death using your revive!")
-                self.inventory.remove(revive.name)
+                self.inventory.remove("Revive")
+                self.health = self.maxHealth
             else: 
                 print("Game Over!")
-                quit()
+                exit()
+        else: 
+            pass
 
     def addItem(self, item_instance):
         if self.calculateInventory_size() < self.inventoryMax:

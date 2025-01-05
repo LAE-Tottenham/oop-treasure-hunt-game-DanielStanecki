@@ -47,8 +47,13 @@ def combat(player, enemy):
         enemy.attack(player)
         if player.health <= 0: 
             print("Player Health: 0")
-            print("Game Over!")
-            exit()
+            if "Revive" in player.inventory: 
+                print("You have dodged death by using your Revive!")
+                player.inventory.remove("Revive")
+                player.health = player.maxHealth
+            else: 
+                print("Game Over!")
+                exit()
         else: 
             player.viewStats()
         time.sleep(1.25)
@@ -82,8 +87,13 @@ def bossCombat(player, boss):
             boss.attack(player)
         if player.health <= 0: 
             print("Player Health: 0")
-            print("Game Over!")
-            exit()
+            if "Revive" in player.inventory: 
+                print("You have dodged death by using your revive!")
+                player.inventory.remove("Revive")
+                player.health = player.maxHealth
+            else: 
+                print("Game Over!")
+                exit()
         else: 
             player.viewStats()
         time.sleep(1.25)
@@ -365,7 +375,7 @@ You walk to the man, and he looks up at you.
                 player.health -= 10
                 if player.health <= 0: 
                     print("Game Over")
-                    quit()
+                    exit()
             elif opt == "3": 
                 print(player.inventory)
             elif opt == "4": 
@@ -497,7 +507,7 @@ You walk to the man, and he looks up at you.
                 player.health -= 5
                 if player.health <= 0:
                     print("Game Over")
-                    quit() 
+                    exit()
 
 
         print("You jump off the cliff, holding tightly onto the glider")
@@ -623,7 +633,7 @@ You walk to the man, and he looks up at you.
                 player.health -= 5
                 if player.health <= 0: 
                     print("Game Over")
-                    quit()
+                    exit()
             elif opt == "3": 
                 buy(player)
             elif opt == "4": 
@@ -710,7 +720,8 @@ You walk to the man, and he looks up at you.
         buff.buffPlayer(player)
         player.health = player.maxHealth
         print("The centaur seems to have left behind a lamp. You pick it up and put it in your bag.")
-        print("You seem to have found some sort of charm that has 'Revival' written on it")
+        print("You seem to have found some sort of charm that has 'Revive' written on it")
+        player.addItem(revive)
 
         opt = " "
         while opt != "1": 
@@ -718,8 +729,14 @@ You walk to the man, and he looks up at you.
     What would you like to do now?
     1: Turn the lamp on
     2: Follow the map further
-    3:                   
+    3: View Stats
+    4: View Inventory
+    5: Heal                  
     """)
+            if opt == "2": 
+                print("You follow the trail on the map, but it leads you into a trap and you take damage!")
+                player.hurt(10)
+                player.viewStats()
 
         
 
@@ -728,4 +745,5 @@ game.setup()
 game.start()
 
 #test
+
 
