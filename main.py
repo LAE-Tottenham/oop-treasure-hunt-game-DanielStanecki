@@ -106,6 +106,7 @@ theCrimsonAbyss = Place("The Crimson Abyss", True)
 hpPotion = Item("HP Potion")
 staminaPotion = Item("Stamina Potion")
 buff = Buff("Buff")
+revive = Item("Revive")
 
 
 # weapons
@@ -362,6 +363,9 @@ You walk to the man, and he looks up at you.
                 print("As soon as you touch the water, you feel the poison seeping into you")
                 print("You lose 10 health!")
                 player.health -= 10
+                if player.health <= 0: 
+                    print("Game Over")
+                    quit()
             elif opt == "3": 
                 print(player.inventory)
             elif opt == "4": 
@@ -491,6 +495,10 @@ You walk to the man, and he looks up at you.
                 print("You try climbing the mountain, but your gloves have lost their grip!")
                 print("You slip and take damage!")
                 player.health -= 5
+                if player.health <= 0:
+                    print("Game Over")
+                    quit() 
+
 
         print("You jump off the cliff, holding tightly onto the glider")
         print("After gliding for a short while, you land onto a huge crossroad")
@@ -613,6 +621,9 @@ You walk to the man, and he looks up at you.
                 print("You run up the ramp and jump off, but you are not high enough, and fall face flat into the mud")
                 print("You take damage.")
                 player.health -= 5
+                if player.health <= 0: 
+                    print("Game Over")
+                    quit()
             elif opt == "3": 
                 buy(player)
             elif opt == "4": 
@@ -696,7 +707,20 @@ You walk to the man, and he looks up at you.
             player.money += 50
         
         print("You seem to have gotten stronger...")
+        buff.buffPlayer(player)
+        player.health = player.maxHealth
         print("The centaur seems to have left behind a lamp. You pick it up and put it in your bag.")
+        print("You seem to have found some sort of charm that has 'Revival' written on it")
+
+        opt = " "
+        while opt != "1": 
+            opt = input("""
+    What would you like to do now?
+    1: Turn the lamp on
+    2: Follow the map further
+    3:                   
+    """)
+
         
 
 game = Game() 

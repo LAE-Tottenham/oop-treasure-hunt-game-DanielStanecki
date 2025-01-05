@@ -17,6 +17,16 @@ class Player():
     def calculateInventory_size(self):
              return len(self.inventory) + 1
 
+    def damage(self, damage, revive): 
+        self.health -= damage
+        if self.health <= 0: 
+            if revive.name in self.inventory: 
+                print("You dodged death using your revive!")
+                self.inventory.remove(revive.name)
+            else: 
+                print("Game Over!")
+                quit()
+
     def addItem(self, item_instance):
         if self.calculateInventory_size() < self.inventoryMax:
             self.inventory.append(item_instance.name)
