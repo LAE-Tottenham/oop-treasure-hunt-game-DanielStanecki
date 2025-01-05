@@ -159,8 +159,9 @@ goatMonster = Boss("Goat Monster", 5, 42, 11)
 giantWarrior = Boss("Giant Warrior", 7, 75, 13)
 centaur = Boss("Centaur", 8, 90, 14)
 mageSpirit = Boss("Mage Spirit", 9, 100, 15)
-spider = Boss("Spider", 10, 110, 17)
-crystalZombie = Boss("Crystal Zombie", 14, 150, 20)
+spider = Boss("Spider", 10, 120, 17)
+crystalZombie = Boss("Crystal Zombie", 14, 120, 20)
+treeCreature = Boss("Tree Creature", 13, 120, 20)
 
 class Game():
     def __init__(self):
@@ -1062,7 +1063,97 @@ You walk to the man, and he looks up at you.
         print("You walk up to the huge door in the mountain and insert the Golden Key into the small keyhole.")
         time.sleep(1)
         print("You push the door open and enter slowly.")
-
+        print("You walk through the corridor in the mountain, and soon emerge on the other side.")
+        print("You see a huge, golden tree, and nearby, a sign saying 'The Godstree'. ")
+        time.sleep(1)
+        print("On your left, you see a chest, while straight ahead is a ladder to the top of the tree")
+        opt = " "
+        found = False
+        while opt != "2": 
+            opt = input("""
+    What will you do? 
+    1: Open the chest
+    2: Climb the ladder ahead
+    3: View Stats
+    4: View Inventory
+    5: Heal
+    6: Replenish Energy                    
+    """)
+            if opt == "1": 
+                print("You go to the chest and try to open it.")
+                print("It requires a lot of energy.")
+                if player.energy < 100: 
+                    print("You were unable to open the chest, as you lack the energy for it.")
+                else: 
+                    print("You opened the chest and found a weapon!")
+                    chance = random.randint(1, 101)
+                    if chance <= 90: 
+                        print("You got a Magic Staff!")
+                        player.setPlayerDMG(magicStaff)
+                        player.viewStats()
+                    else: 
+                        print("You got a Gold Magic Staff! It is very rare!")
+                        player.setPlayerDMG(goldMagicStaff)
+                        player.viewStats()
+            elif opt == "3": 
+                player.viewStats()
+            elif opt == "4": 
+                print(player.inventory)
+            elif opt == "5": 
+                player.useItem(hpPotion)
+            elif opt == "6": 
+                player.useItem(staminaPotion)
+        
+        print("You climb the gold ladder, and reach the top.")
+        time.sleep(1)
+        print("You see a throne of some sorts, but it seems unoccupied.")
+        print("There is also a statue")
+        opt = input("""
+    What will you do? 
+    1: Rest and sit on the throne
+    2: Give an offering to the statue           
+    """)    
+        if opt == "1": 
+            print("You sit on the throne, and rest for a while.")
+            time.sleep(2)
+            print("z")
+            time.sleep(2)
+            print("Z")
+            time.sleep(2)
+            print("z")
+            print("You wake up, and see a tree creature standing in front of you, with a staff in hand.")
+            print("- You are in my seat, human, and for that, you will pay!")
+            time.sleep(1)
+            print("You prepare for battle!")
+            bossCombat(player, treeCreature)
+            print("You have defeated the tree creature.")
+            print("You see mask laying on the ground, so you take it.")
+        elif opt == "2": 
+            print("You leave a few coins at the base of the statue.")
+            player.money -= 20
+            time.sleep(1)
+            print("You hear a humming sound, and suddenly, you have 100 coins in your pocket!")
+            player.money += 100
+            print("You also find a health potion")
+            player.addItem(hpPotion)
+            print("A mask also lays by the statue, so you take it.")
+        
+        print("You inspect the mask, and it seems to show hidden routes when looked through.")
+        time.sleep(1)
+        print("You feel yourself getting stronger...")
+        opt = " "
+        while opt != "1": 
+            opt = input("""
+    What would you like to do? 
+    1: Follow the hidden route shown in the Clarifying Mask
+    2: Try inserting the key into the statue
+    3: Buy from the Merchant
+    4: View Stats
+    5: View Inventory
+    6: Heal
+    7: Replenish Energy                    
+    """)
+            
 
 game = Game() 
 game.setup()

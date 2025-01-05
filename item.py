@@ -19,6 +19,8 @@ class Buff(Item):
         player.damage = player.baseDamage + player.weaponDamage
         player.maxHealth += 25
         player.energy += 10
+        player.health = player.maxHealth
+        
 
 #test:
 

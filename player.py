@@ -5,7 +5,7 @@ class Player():
         self.name = given_name
         self.maxHealth = 100
         self.maxEnergy = 300
-        self.health = 5
+        self.health = 100
         self.energy = 50
         self.inventoryMax = 30
         self.inventory = []
