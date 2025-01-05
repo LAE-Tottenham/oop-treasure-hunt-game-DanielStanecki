@@ -1153,7 +1153,22 @@ You walk to the man, and he looks up at you.
     6: Heal
     7: Replenish Energy                    
     """)
-            
+            if opt == "2": 
+                print("You insert the key into the hole in the statue.")
+                print("The ground rumbles, and a spike ejects from the statue, grazing your skin!")
+                time.sleep(1)
+                print("You took damage")
+                player.hurt(15)
+            elif opt == "3": 
+                buy(player)
+            elif opt == "4": 
+                player.viewStats()
+            elif opt == "5": 
+                print(player.inventory)
+            elif opt == "6": 
+                player.useItem(hpPotion)
+            elif opt == "7": 
+                player.useItem(staminaPotion)
 
 game = Game() 
 game.setup()
