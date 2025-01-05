@@ -152,6 +152,7 @@ skeleton = Enemy("Skeleton", 1, 25)
 giant = Enemy("Giant", 3, 33)
 ghost = Enemy("Enemy", 6, 60)
 crystalDog = Enemy("Crystal Dog", 9, 80)
+snake = Enemy("Snake", 11, 100)
 
 #boss
 fishMonster = Boss("Fish Monster", 5, 40, 10)
@@ -162,6 +163,7 @@ mageSpirit = Boss("Mage Spirit", 9, 100, 15)
 spider = Boss("Spider", 10, 120, 17)
 crystalZombie = Boss("Crystal Zombie", 14, 120, 20)
 treeCreature = Boss("Tree Creature", 13, 120, 20)
+assassin = Boss("Assassin", 14, 130, 21)
 
 class Game():
     def __init__(self):
@@ -1141,6 +1143,7 @@ You walk to the man, and he looks up at you.
         print("You inspect the mask, and it seems to show hidden routes when looked through.")
         time.sleep(1)
         print("You feel yourself getting stronger...")
+        buff.buffPlayer(player)
         opt = " "
         while opt != "1": 
             opt = input("""
@@ -1169,6 +1172,110 @@ You walk to the man, and he looks up at you.
                 player.useItem(hpPotion)
             elif opt == "7": 
                 player.useItem(staminaPotion)
+
+        print("You follow the hidden route, which eventually leads to a foggy city.")
+        print("You are now in Fog Capital, a city stuck between reality and the dream state. ")
+        time.sleep(1)
+        print("There are stairs leading down.")
+        opt = " "
+        while opt != "2": 
+            opt = input("""
+    What will you do? 
+    1: Take off the Clarifying Mask
+    2: Follow the stairs downwards
+    3: View Stats
+    4: View Inventory
+    5: Heal
+    6: Replenish Energy                     
+    """)
+            if opt == "1": 
+                print("You take the mask off, and realise you are in an empty desert.")
+                time.sleep(1)
+                print("How you got here, you have no idea, but what you do know is that there is a snake coming towards you really fast!")
+                time.sleep(1)
+                print("You prepare to fight!")
+                combat(player, snake)
+                print("You have defeated the snake!")
+                chance = random.randint(1, 101)
+                if chance <= 97: 
+                    print("You got a dagger!")
+                    player.setPlayerDMG(dagger)
+                    player.viewStats()
+                else: 
+                    print("You got a Gold Dagger! It is very rare!")
+                    player.setPlayerDMG(goldDagger)
+                    player.viewStats()
+            elif opt == "3": 
+                player.viewStats()
+            elif opt == "4": 
+                print(player.inventory)
+            elif opt == "5":
+                player.useItem(hpPotion)
+            elif opt == "6": 
+                player.useItem(staminaPotion)
+
+        print("You walk down the foggy stairs, and you find yourself in a chamber.")
+        time.sleep(1)
+        print("You have a choice to make; either go left or go right.")
+        opt = input("""
+    Where will you go? 
+    1: Left
+    2: Right                
+    """)
+        if opt == "1": 
+            print("You go left, leading you into a maze.")
+            time.sleep(1)
+            print(".")
+            time.sleep(1)
+            print(".")
+            time.sleep(1)
+            print(".")
+            time.sleep(1)
+            print("...You finally make it out of the maze only to realise you are back in the chamber")
+        else: 
+            pass
+                       
+        print("You go right, and you find yourself in an extremely foggy room.")
+        print("You hear very quiet footsteps, and suddenly a cloaked figure jumps at you!")
+        time.sleep(1)
+        print("You prepare for battle!")
+        bossCombat(player, assassin)
+        print("You have beaten the enemy!")
+        time.sleep(1)
+        print("The mask has been knocked off your face, and you realise you are in some forest.")
+        print("Also, you find a vial on the ground, labelled 'Poison Immunity'. ")
+        
+        print("You seem to have gotten stronger...")
+        buff.buffPlayer(player)
+        print("You find money laying around on the dirt.")
+        player.money += 30
+
+        print("As you walk, you start to feel yourself choke. ")
+        opt = " "
+        while opt != "1": 
+            opt = input("""
+    What will you do? 
+    1: Drink the Poison Immunity
+    2: Put the Clarifying Mask back on
+    3: Buy from the Merchant
+    4: View Stats
+    5: View Inventory
+    6: Heal
+    7: Replenish Energy                    
+    """)
+            if opt == "2": 
+                print("You put the mask on, but you are still choking!")
+                player.health -= 20
+            elif opt == "3": 
+                buy(player)
+            elif opt == "4": 
+                player.viewStats()
+            elif opt == "5": 
+                print(player.inventory)
+            elif opt == "6": 
+                player.useItem(hpPotion)
+            elif opt == "7": 
+                player.useItem(staminaPotion)          
 
 game = Game() 
 game.setup()
