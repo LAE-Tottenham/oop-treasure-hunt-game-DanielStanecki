@@ -164,6 +164,7 @@ spider = Boss("Spider", 10, 120, 17)
 crystalZombie = Boss("Crystal Zombie", 14, 120, 20)
 treeCreature = Boss("Tree Creature", 13, 120, 20)
 assassin = Boss("Assassin", 14, 130, 21)
+lostKing = Boss("The Lost King", 13, 140, 25)
 
 class Game():
     def __init__(self):
@@ -557,7 +558,7 @@ You walk to the man, and he looks up at you.
     """)
             if opt == "1":
                 if found1 == False: 
-                    print("You take the left path and you see ")
+                    print("You take the left path.")
                     print("An intimidating Giant stands there, and reaches for his spear as soon as he sees you!")
                     time.sleep(1.25)
                     combat(player, giant)
@@ -1020,7 +1021,8 @@ You walk to the man, and he looks up at you.
             print("You have defeated the crystal zombie!")
             print("You find a Golden Key laying on the table, and take it.")
             print("Are you happy now that you have disrupted an innocents creature its life? ")
-        elif opt == "2": 
+            player.morality -= 1
+        else: 
             print("You hear footsteps heading towards the door.")
             time.sleep(1.25)
             print("When the door opens, you see a humanoid crystal.")
@@ -1031,6 +1033,7 @@ You walk to the man, and he looks up at you.
             print("Also, he gives you a Golden Key.")
             player.addItem(hpPotion)
             player.money += 40
+            player.morality += 1
         
         print("You exit the house.")
         print("You seem to have gotten stronger...")
@@ -1130,7 +1133,8 @@ You walk to the man, and he looks up at you.
             bossCombat(player, treeCreature)
             print("You have defeated the tree creature.")
             print("You see mask laying on the ground, so you take it.")
-        elif opt == "2": 
+            player.morality -= 1
+        else: 
             print("You leave a few coins at the base of the statue.")
             player.money -= 20
             time.sleep(1)
@@ -1139,6 +1143,7 @@ You walk to the man, and he looks up at you.
             print("You also find a health potion")
             player.addItem(hpPotion)
             print("A mask also lays by the statue, so you take it.")
+            player.morality += 1
         
         print("You inspect the mask, and it seems to show hidden routes when looked through.")
         time.sleep(1)
@@ -1304,14 +1309,60 @@ You walk to the man, and he looks up at you.
                     print("You enter the shack, and inside is a small box.")
                     print("You open the box, to find a lot of money!")
                     print("Also, there is a revival charm inside!")
+                    chance = random.randint(1, 101)
+                    if chance <= 95: 
+                        print("You also find nunchucks on the side!")
+                        player.setPlayerDMG(nunchucks)
+                        player.viewStats()
+                    else: 
+                        print("You also find Gold Nunchucks on the side! They are very rare!")
+                        player.setPlayerDMG(goldNunchucks)
+                        player.viewStats()
                     player.addItem(revive)
                     player.money += 50
                     found = True
                 else: 
                     print("You have already found everything in this shack.")
             elif opt == "3": 
-                print()
+                player.viewStats()
+            elif opt == "4": 
+                print(player.inventory)
+            elif opt == "5": 
+                player.useItem(hpPotion)
+            elif opt == "6": 
+                player.useItem(staminaPotion)
 
+        print("You dive into the water, and sense your poison immunity protecting you from the poison in the water. ")
+        time.sleep(1)
+        print("You swim for a while, until you reach the shore at the other end of the lake. ")
+        print("A large statue of a king is placed here.")
+        time.sleep(1)
+        print("You see some gold coins on the ground by the statue.")
+        
+        opt = input("""
+    What will you do? 
+    1: Take the coins 
+    2: Leave the coins
+    """)    
+        if opt == "1": 
+            print("You snatch the coins from the statue, and walk away. You think you heard a groaning sound but you ignore it.")
+            player.money += 30
+            time.sleep(2)
+            print("BOOM!")
+            print("The statue explodes, and out of it leaps out a large figure, shaped just like the statue!")
+            time.sleep(1)
+            print("- You dare steal money from the king!")
+            print("You prepare to fight!")
+            bossCombat(player, lostKing)
+            print("You have defeated the Lost King!")
+            player.morality -= 1
+        else: 
+            print("You leave the money by the statue and continue on your way")
+            player.morality += 1
+
+        print("Behind the statue, you find a shovel.")
+        print("You seem to have gotten stronger...")
+        buff.buffPlayer(player)
 
 
 game = Game() 

@@ -13,6 +13,7 @@ class Player():
         self.weaponDamage = 0
         self.damage = self.baseDamage + self.weaponDamage
         self.money = 100
+        self.morality = 0
         
     def calculateInventory_size(self):
              return len(self.inventory) + 1
