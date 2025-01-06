@@ -153,6 +153,7 @@ giant = Enemy("Giant", 3, 33)
 ghost = Enemy("Enemy", 6, 60)
 crystalDog = Enemy("Crystal Dog", 9, 80)
 snake = Enemy("Snake", 11, 100)
+zombie = Enemy("Zombie", 11, 110)
 
 #boss
 fishMonster = Boss("Fish Monster", 5, 40, 10)
@@ -1420,6 +1421,15 @@ You walk to the man, and he looks up at you.
                 if found == False: 
                     print("You enter the corridor, and see a smaller tomb.")
                     time.sleep(1)
+                    print("You inspect the tomb, when suddenlt, a zombie jumps out, wielding a trident!")
+                    print("You prepare for battle!")
+                    time.sleep(1)
+                    combat(player, zombie)
+                    print("You have defeated the zombie!")
+                    time.sleep(1)
+                    print("There is a weapon laying on the side of the tomb.")
+                    chance = random.randint(1, 101)
+                    chance 
 
 game = Game() 
 game.setup()
