@@ -1266,6 +1266,7 @@ You walk to the man, and he looks up at you.
             if opt == "2": 
                 print("You put the mask on, but you are still choking!")
                 player.health -= 20
+                player.viewStats()
             elif opt == "3": 
                 buy(player)
             elif opt == "4": 
@@ -1275,7 +1276,43 @@ You walk to the man, and he looks up at you.
             elif opt == "6": 
                 player.useItem(hpPotion)
             elif opt == "7": 
-                player.useItem(staminaPotion)          
+                player.useItem(staminaPotion)
+
+        print("You drink the vial, and you feel a sensation coming over you.")
+        time.sleep(1)
+        print("You stop choking. It seems that there was some poisonous substance in the air. ")
+        time.sleep(1)
+        print("You walk through the clearing, and come out onto a clearing, with a mossy lake in the middle.")
+        print("A sign nearby reads 'Green Lake'. ")
+        time.sleep(1)
+        print("In the distance, you see a small shack. ")
+
+        found = False
+        opt = " "
+        while opt != "1": 
+            opt = input("""
+    What will you do? 
+    1: Swim in the water
+    2: Search the shack
+    3: View Stats
+    4: View Inventory
+    5: Heal
+    6: Replenish Energy                   
+    """)        
+            if opt == "2":
+                if found == False: 
+                    print("You enter the shack, and inside is a small box.")
+                    print("You open the box, to find a lot of money!")
+                    print("Also, there is a revival charm inside!")
+                    player.addItem(revive)
+                    player.money += 50
+                    found = True
+                else: 
+                    print("You have already found everything in this shack.")
+            elif opt == "3": 
+                print()
+
+
 
 game = Game() 
 game.setup()
