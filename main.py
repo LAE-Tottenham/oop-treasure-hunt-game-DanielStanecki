@@ -1247,7 +1247,7 @@ You walk to the man, and he looks up at you.
         bossCombat(player, assassin)
         print("You have beaten the enemy!")
         time.sleep(1)
-        print("The mask has been knocked off your face, and you realise you are in some forest.")
+        print("The mask has been knocked off your face, and you realise that you are in some forest.")
         print("Also, you find a vial on the ground, labelled 'Poison Immunity'. ")
         
         print("You seem to have gotten stronger...")
@@ -1270,7 +1270,7 @@ You walk to the man, and he looks up at you.
     """)
             if opt == "2": 
                 print("You put the mask on, but you are still choking!")
-                player.health -= 20
+                player.hurt(20)
                 player.viewStats()
             elif opt == "3": 
                 buy(player)
@@ -1363,7 +1363,63 @@ You walk to the man, and he looks up at you.
         print("Behind the statue, you find a shovel.")
         print("You seem to have gotten stronger...")
         buff.buffPlayer(player)
+        time.sleep(1)
+        print("You see an odd patch of dirt ahead.")
 
+        opt = " "
+        while opt != "1": 
+            opt = input("""
+    What would you like to do? 
+    1: Dig through the suspicious dirt
+    2: Swim back through the lake
+    3: Buy from the merchant
+    4: View Stats
+    5: View Inventory
+    6: Heal
+    7: Replenish Energy                   
+    """)
+            if opt == "2": 
+                print("You enter the water, but it seems your poison immunity has worn off!")
+                time.sleep(1)
+                print("You rush out of the water!")
+                player.hurt(10)
+            elif opt == "3": 
+                buy(player)
+            elif opt == "4": 
+                player.viewStats()
+            elif opt == "5": 
+                print(player.inventory)
+            elif opt == "6": 
+                player.useItem(hpPotion)
+            elif opt == "7": 
+                player.useItem(staminaPotion)
+
+        print("You start digging the dirt...")
+        time.sleep(2)
+        print("You finish digging, and you find a staircase!")
+        print("You go down the stairs.")
+        time.sleep(2)
+        print("You get to the base of the stairs, and you see a huge tomb.")
+        print("You are in the Giant's Resting Grounds")
+        print("There are bones on the ground, and webs everywhere.")
+        print("Also, there is a corridor into another room.")
+        
+        found = False
+        opt = " "
+        while opt != "2": 
+            opt = ("""
+    What would you like to do? 
+    1: Explore the other corridor
+    2: Examine the Giant's tombstone
+    3: View Stats
+    4: View Inventory
+    5: Heal
+    6: Replenish Energy               
+    """)
+            if opt == "1": 
+                if found == False: 
+                    print("You enter the corridor, and see a smaller tomb.")
+                    time.sleep(1)
 
 game = Game() 
 game.setup()
