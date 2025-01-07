@@ -1408,7 +1408,7 @@ You walk to the man, and he looks up at you.
         found = False
         opt = " "
         while opt != "2": 
-            opt = ("""
+            opt = input("""
     What would you like to do? 
     1: Explore the other corridor
     2: Examine the Giant's tombstone
@@ -1429,7 +1429,46 @@ You walk to the man, and he looks up at you.
                     time.sleep(1)
                     print("There is a weapon laying on the side of the tomb.")
                     chance = random.randint(1, 101)
-                    chance 
+                    if chance <= 95: 
+                        print("You got a trident!")
+                        player.setPlayerDMG(trident)
+                        player.viewStats()
+                    else: 
+                        print("You got a Gold Trident! It's really rare!")
+                        player.setPlayerDMG(goldTrident) 
+                        player.viewStats()
+                    found = True
+                else: 
+                    print("You have already explored the side tomb.")
+            elif opt == "3": 
+                player.viewStats()
+            elif opt == "4": 
+                print(player.inventory)
+            elif opt == "5": 
+                player.useItem(hpPotion)
+            elif opt == "6": 
+                player.useItem(staminaPotion)
+
+        print("You examine the Giant's tombstone up close, when you notice some strange writing on it.")
+        time.sleep(1)
+        opt = input("""
+    What will you do? 
+    1: Translate the writing
+    2: Touch the tombstone                
+    """)
+        if opt == "1": 
+            print("You translate the writing using a book.")
+            time.sleep(1)
+            print("After a while, you find the writing to say 'He who reads these words will be forever cursed'. ")
+            time.sleep(1)
+            print("After reading these words, the letters start to glow!")
+        else: 
+            print("You touch the dusty tombstone.")
+            time.sleep(1)
+            print("As you touch it, the writing on it starts to glow blue.")
+    
+        print("The tomb starts to rumble and shake!")
+        time.sleep(1)
 
 game = Game() 
 game.setup()
