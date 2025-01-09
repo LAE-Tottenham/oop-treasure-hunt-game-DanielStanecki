@@ -166,6 +166,7 @@ crystalZombie = Boss("Crystal Zombie", 14, 120, 20)
 treeCreature = Boss("Tree Creature", 13, 120, 20)
 assassin = Boss("Assassin", 14, 130, 21)
 lostKing = Boss("The Lost King", 13, 140, 25)
+giantKing = Boss("The King of Giants", 11, 140, 30)
 
 class Game():
     def __init__(self):
@@ -1133,7 +1134,7 @@ You walk to the man, and he looks up at you.
             print("You prepare for battle!")
             bossCombat(player, treeCreature)
             print("You have defeated the tree creature.")
-            print("You see mask laying on the ground, so you take it.")
+            print("You see a mask laying on the ground, so you take it.")
             player.morality -= 1
         else: 
             print("You leave a few coins at the base of the statue.")
@@ -1288,7 +1289,7 @@ You walk to the man, and he looks up at you.
         time.sleep(1)
         print("You stop choking. It seems that there was some poisonous substance in the air. ")
         time.sleep(1)
-        print("You walk through the clearing, and come out onto a clearing, with a mossy lake in the middle.")
+        print("You walk through the forest, and come out onto a clearing, with a mossy lake in the middle.")
         print("A sign nearby reads 'Green Lake'. ")
         time.sleep(1)
         print("In the distance, you see a small shack. ")
@@ -1421,7 +1422,7 @@ You walk to the man, and he looks up at you.
                 if found == False: 
                     print("You enter the corridor, and see a smaller tomb.")
                     time.sleep(1)
-                    print("You inspect the tomb, when suddenlt, a zombie jumps out, wielding a trident!")
+                    print("You inspect the tomb, when suddenly, a zombie jumps out, wielding a trident!")
                     print("You prepare for battle!")
                     time.sleep(1)
                     combat(player, zombie)
@@ -1469,6 +1470,43 @@ You walk to the man, and he looks up at you.
     
         print("The tomb starts to rumble and shake!")
         time.sleep(1)
+        print("The tomb flashes, and you are blinded for a moment.")
+        time.sleep(1)
+        print("You can see again, and you notice that the tomb is gone.")
+        print("Instead of the tomb, you see a Giant, but he is even larger than most Giants!")
+        print("He also has a crown on his head!")
+        time.sleep(1)
+        print("You prepare for battle!")
+        time.sleep(1)
+        bossCombat(player, giantKing)
+        print("You have defeated the King of Giants!")
+        time.sleep(1)
+        
+        print("You seem to have gotten stronger...")
+        buff.buffPlayer(player)
+        print("The Giant King left behind some money by his tombstone.")
+        player.money += 40
+        print("There is also a medallion placed on the crown of the king.")
+
+        opt = " "
+        while opt != "1": 
+            opt = input("""
+    What will you do? 
+    1: Place the Giant's Medallion into the circular space in the door
+    2: Try to dig your way out of the tomb.
+    3: Buy from the Merchant
+    4: View Stats
+    5: View Inventory
+    6: Heal
+    7: Replenish Energy                    
+    """)
+            if opt == "2": 
+                print("Try to dig upwards")
+                print("I have no idea why you would do this but sure.")
+                time.sleep(1)
+                print("You dig and dig, but all you get is dirt in your face")
+                player.hurt(5)
+        
 
 game = Game() 
 game.setup()
