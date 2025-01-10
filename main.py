@@ -1506,7 +1506,43 @@ You walk to the man, and he looks up at you.
                 time.sleep(1)
                 print("You dig and dig, but all you get is dirt in your face")
                 player.hurt(5)
+            elif opt == "3": 
+                buy(player)
+            elif opt == "4": 
+                player.viewStats()
+            elif opt == "5": 
+                print(player.inventory)
+            elif opt == "6": 
+                player.useItem(hpPotion)
+            elif opt == "7": 
+                player.useItem(staminaPotion)
+
+        print("You insert the Giant's Medallion into the circular hole in the door.")
+        time.sleep(1)
+        print("You hear a low groan, and the door slides open!")
+        time.sleep(1)
+        print("You walk through a dark corridor, until you arrive at a ladder going upwards.")
+        time.sleep(1)
+        print("You climb up the ladder, and find yourself on the edge of a huge city!")
+        print("You are now in the Capital Outskirts!")
         
+        time.sleep(1)
+        print("The city seems completely deserted, literally and metaphorically.")
+        print("Sand seeps out of every building, and covers the paths fully")
+        time.sleep(1)
+        print("Ahead, there is a huge mountain of sand, with something seemingly sticking out of it!")
+        print("To the side, there is a huge building, some sort of town hall.")
+        opt = " "
+        while opt != "1": 
+            opt = input("""
+    What would you like to do? 
+    1: Go to the town hall
+    2: Take the object stuck in the sand
+    3: View Stats
+    4: View Inventory
+    5: Heal
+    6: Replenish Energy                     
+    """)
 
 game = Game() 
 game.setup()
