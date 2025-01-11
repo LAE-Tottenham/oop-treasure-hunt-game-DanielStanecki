@@ -46,8 +46,11 @@ class Player():
         print(f"Player Health: {self.health}    Energy: {self.energy}    Damage: {self.damage}  Money: {self.money}")
 
     def setPlayerDMG(self, weapon): 
-        self.weaponDamage = weapon.weaponDMG
-        self.damage = self.baseDamage + self.weaponDamage
+        if self.weaponDamage < weapon.weaponDMG:
+            self.weaponDamage = weapon.weaponDMG
+            self.damage = self.baseDamage + self.weaponDamage
+        else:
+            pass
         
     def useItem(self, item):
         if item.name in self.inventory: 

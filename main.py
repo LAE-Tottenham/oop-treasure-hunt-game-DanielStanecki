@@ -167,6 +167,7 @@ treeCreature = Boss("Tree Creature", 13, 120, 20)
 assassin = Boss("Assassin", 14, 130, 21)
 lostKing = Boss("The Lost King", 13, 140, 25)
 giantKing = Boss("The King of Giants", 11, 140, 30)
+portalMaster = Boss("The Portal Master", 12, 135, 40)
 
 class Game():
     def __init__(self):
@@ -1543,6 +1544,94 @@ You walk to the man, and he looks up at you.
     5: Heal
     6: Replenish Energy                     
     """)
+            if opt == "2": 
+                print("You climb up the sand hill.")
+                time.sleep(1)
+                print("At the top, you see the item sticking out of the sand.")
+                print("It looks like a hilt of some sorts.")
+                time.sleep(1)
+                chance = random.randint(1, 101)
+                if chance <= 97: 
+                    print("You found a Katana!")
+                    player.setPlayerDMG(katana)
+                    player.viewStats()
+                else: 
+                    print("You found a Gold Katana! It is very rare!")
+                    player.setPlayerDMG(goldKatana)
+                    player.viewStats()
+            elif opt == "3": 
+                player.viewStats()
+            elif opt == "4": 
+                print(player.inventory)
+            elif opt ==  "5": 
+                player.useItem(hpPotion)
+            elif opt == "6": 
+                player.useItem(staminaPotion)
+
+        print("You walk into the town hall, where you see a huge man sitting at a desk.")
+        time.sleep(1)
+        print("The man speaks to you.")
+        print("- Welcome. Your journey is approaching its end.")
+        print("- Beyond this door awaits the end.")
+        time.sleep(1)
+        print("- However I cannot just allow you to go on without proving your worth.")
+        print("The man flashes the hilt of his sword.")
+        opt = input("""
+    What will you do? 
+    1: Prove your worth and honour by battle
+    2: Prove your worth by bribing the man               
+    """)
+        
+        if opt == "1":
+            print("You accept the challenge.")
+            time.sleep(1)
+            print("You prepare for battle!")
+            bossCombat(player, portalMaster)
+            print("You have defeated the Portal Master.")
+            print("- W-well done t-t-traveller. You have b-bested me.")  
+            time.sleep(1)
+            print("Although weak, he manages to walk to his desk, and opens the door with a push of a button.")
+            print("He gives you a small statue.")
+            player.morality += 1
+        else: 
+            print("You show the man some coins, and ask him if thats enough to pass.")
+            time.sleep(1)
+            print("- Hmmm. Fine, but make sure you manage to complete the journey in there, otherwise, this world is finished.")
+            time.sleep(1)
+            print("He presses a button at his desk, and the door opens.")
+
+        print("- Hold the Abyss Avatar to the ceiling in there, and the portal shall open. Good luck")
+        print("You seem to have gotten stronger...")
+        buff.buffPlayer(player)
+        time.sleep(1)
+        opt = " "
+        while opt != "1": 
+            opt = input("""
+    What would you like to do? 
+    1: Hold the Abyss Avatar to the ceiling
+    2: Hold the Giant's Medallion to the ceiling
+    3: Buy from the Merchant.
+    4: View Stats
+    5: View Inventory
+    6: Heal
+    7: Replenish Energy                    
+    """)
+
+            if opt == "2": 
+                print("You raise the Medallion")
+                print("- No! I said raise the Abyss Avatar!")
+                print("The man punches you")
+                player.hurt(30)
+            elif opt == "3": 
+                buy(player)
+            elif opt == "4": 
+                player.viewStats()
+            elif opt == "5": 
+                print(player.inventory)
+            elif opt == "6": 
+                player.useItem(hpPotion)
+            elif opt == "7": 
+                player.useItem(staminaPotion)
 
 game = Game() 
 game.setup()
