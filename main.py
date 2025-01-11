@@ -1633,6 +1633,55 @@ You walk to the man, and he looks up at you.
             elif opt == "7": 
                 player.useItem(staminaPotion)
 
+        print("You raise the Abyss Avatar into the air.")
+        time.sleep(1)
+        print("A purple portal opens infront of you.")
+        print("You step inside the portal...")
+        time.sleep(0.5)
+        print(".")
+        time.sleep(0.5)
+        print(".")
+        time.sleep(0.5)
+        print(".")
+        time.sleep(0.5)
+        
+        print("You find yourself on a platform, surrounded by darkness on all sides. ")
+        time.sleep(1)
+        print("As you approach the edge of the platform, more platforms appear infront of you, seemingly forming a path ahead.")
+        print("You see a weapon laying by a rock on the side.")
+        time.sleep(1)
+        opt = " "
+        while opt != "1": 
+            opt = input("""
+    What will you do now? 
+    1: Proceed forward 
+    2: Take the weapon 
+    3: View Stats
+    4: View Inventory
+    5: Heal
+    6: Replenish Energy                   
+    """)
+            if opt == "2": 
+                chance = random.randint(1, 101)
+                if chance <= 90: 
+                    print("You got the Void Sword!")
+                    player.setPlayerDMG(theVoidSword)
+                    player.viewStats()
+                else: 
+                    print("You got the Gold Void Sword! It is very rare!")
+                    player.setPlayerDMG(theGoldVoidSword)
+                    player.viewStats()
+            elif opt == "3": 
+                player.viewStats()
+            elif opt == "4": 
+                print(player.inventory)
+            elif opt == "5": 
+                player.useItem(hpPotion)
+            elif opt == "6": 
+                player.useItem(staminaPotion)
+
+        
+
 game = Game() 
 game.setup()
 game.start()
