@@ -168,6 +168,7 @@ assassin = Boss("Assassin", 14, 130, 21)
 lostKing = Boss("The Lost King", 13, 140, 25)
 giantKing = Boss("The King of Giants", 11, 140, 30)
 portalMaster = Boss("The Portal Master", 12, 135, 40)
+crimsonBeast = Boss("The Crimson Beast", 14, 150, 50)
 
 class Game():
     def __init__(self):
@@ -681,7 +682,7 @@ You walk to the man, and he looks up at you.
     2: No
     """)
                 if choice == "1": 
-                    money -= 40
+                    player.money -= 40
                     chance = random.randint(1, 101)
                     if chance <= 95: 
                         print("You have bought a Bow and Arrow!")
@@ -1599,6 +1600,7 @@ You walk to the man, and he looks up at you.
             print("- Hmmm. Fine, but make sure you manage to complete the journey in there, otherwise, this world is finished.")
             time.sleep(1)
             print("He presses a button at his desk, and the door opens.")
+            player.morality -= 1
 
         print("- Hold the Abyss Avatar to the ceiling in there, and the portal shall open. Good luck")
         print("You seem to have gotten stronger...")
@@ -1645,7 +1647,8 @@ You walk to the man, and he looks up at you.
         print(".")
         time.sleep(0.5)
         
-        print("You find yourself on a platform, surrounded by darkness on all sides. ")
+        print("You find yourself on a platform, surrounded by crimson darkness on all sides. ")
+        print("You are in the Crimson Abyss")
         time.sleep(1)
         print("As you approach the edge of the platform, more platforms appear infront of you, seemingly forming a path ahead.")
         print("You see a weapon laying by a rock on the side.")
@@ -1680,7 +1683,33 @@ You walk to the man, and he looks up at you.
             elif opt == "6": 
                 player.useItem(staminaPotion)
 
-        
+        print("You move on forward, hopping from platform to platform as soon as they appear. ")
+        time.sleep(1)
+        print("You arrive at a large platform, surrounded by dark clouds and crimson lightning.")
+        time.sleep(1)
+        print("Suddenly, a cloud of darkness lands onto the platform, and explodes!")
+        time.sleep(1)
+        print("From the red smoke emerges a figure, wielding a double-edged greatsword, dark crimson armour and eyes flashing red.")
+        time.sleep(1)
+        print("He lets out a cry, and charges at you!")
+        print("You prepare for battle!")
+        bossCombat(player, crimsonBeast)
+
+        print("You defeat the Crimson Beast, freeing the world from its wrath.")
+        time.sleep(1)
+        print("The platforms around you start to crumble, and the void seems to be collapsing.")
+
+        if player.morality >= 0: 
+            time.sleep(1)
+            print("Your good actions throughout the journey fill you with courage")
+            print("You use your energy to jump back to the portal, and back into the world that you came from...")
+        else: 
+            time.sleep(1)
+            print("You remember some of the questionable actions that you did on your journey, and decide that this is the end of your journey.")
+            print("You did what had to be done....")
+
+        time.sleep(1)
+        print("Congratulations! You have beaten my game!")
 
 game = Game() 
 game.setup()
