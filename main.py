@@ -1009,7 +1009,7 @@ You walk to the man, and he looks up at you.
                 player.useItem(staminaPotion)
         
         print("You go towards the building but it seems to be locked")
-        opt = ("""
+        opt = input("""
     What do you do? 
     1: Break it down
     2: Knock on it politely           
@@ -1044,7 +1044,7 @@ You walk to the man, and he looks up at you.
         buff.buffPlayer(player)
         opt = " "
         while opt != "1": 
-            opt = ("""
+            opt = input("""
     What would you like to do now? 
     1: Use the Golden Key to open the huge door into the mountain
     2: Try to cut through the crystal using the Silk Cutters
